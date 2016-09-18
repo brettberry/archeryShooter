@@ -1,0 +1,515 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		12FE393A1D8E174C00EBFA8D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FE39391D8E174C00EBFA8D /* AppDelegate.swift */; };
+		12FE393C1D8E174C00EBFA8D /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 12FE393B1D8E174C00EBFA8D /* GameScene.sks */; };
+		12FE393E1D8E174C00EBFA8D /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FE393D1D8E174C00EBFA8D /* GameScene.swift */; };
+		12FE39401D8E174C00EBFA8D /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FE393F1D8E174C00EBFA8D /* GameViewController.swift */; };
+		12FE39431D8E174C00EBFA8D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12FE39411D8E174C00EBFA8D /* Main.storyboard */; };
+		12FE39451D8E174C00EBFA8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12FE39441D8E174C00EBFA8D /* Assets.xcassets */; };
+		12FE39481D8E174C00EBFA8D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12FE39461D8E174C00EBFA8D /* LaunchScreen.storyboard */; };
+		12FE39531D8E174D00EBFA8D /* archeryShooterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FE39521D8E174D00EBFA8D /* archeryShooterTests.swift */; };
+		12FE395E1D8E174D00EBFA8D /* archeryShooterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FE395D1D8E174D00EBFA8D /* archeryShooterUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		12FE394F1D8E174D00EBFA8D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 12FE392E1D8E174C00EBFA8D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 12FE39351D8E174C00EBFA8D;
+			remoteInfo = archeryShooter;
+		};
+		12FE395A1D8E174D00EBFA8D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 12FE392E1D8E174C00EBFA8D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 12FE39351D8E174C00EBFA8D;
+			remoteInfo = archeryShooter;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		12FE39361D8E174C00EBFA8D /* archeryShooter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = archeryShooter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		12FE39391D8E174C00EBFA8D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		12FE393B1D8E174C00EBFA8D /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		12FE393D1D8E174C00EBFA8D /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		12FE393F1D8E174C00EBFA8D /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		12FE39421D8E174C00EBFA8D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		12FE39441D8E174C00EBFA8D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		12FE39471D8E174C00EBFA8D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		12FE39491D8E174C00EBFA8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		12FE394E1D8E174D00EBFA8D /* archeryShooterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = archeryShooterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		12FE39521D8E174D00EBFA8D /* archeryShooterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = archeryShooterTests.swift; sourceTree = "<group>"; };
+		12FE39541D8E174D00EBFA8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		12FE39591D8E174D00EBFA8D /* archeryShooterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = archeryShooterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		12FE395D1D8E174D00EBFA8D /* archeryShooterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = archeryShooterUITests.swift; sourceTree = "<group>"; };
+		12FE395F1D8E174D00EBFA8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		12FE39331D8E174C00EBFA8D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		12FE394B1D8E174D00EBFA8D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		12FE39561D8E174D00EBFA8D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		12FE392D1D8E174C00EBFA8D = {
+			isa = PBXGroup;
+			children = (
+				12FE39381D8E174C00EBFA8D /* archeryShooter */,
+				12FE39511D8E174D00EBFA8D /* archeryShooterTests */,
+				12FE395C1D8E174D00EBFA8D /* archeryShooterUITests */,
+				12FE39371D8E174C00EBFA8D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		12FE39371D8E174C00EBFA8D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				12FE39361D8E174C00EBFA8D /* archeryShooter.app */,
+				12FE394E1D8E174D00EBFA8D /* archeryShooterTests.xctest */,
+				12FE39591D8E174D00EBFA8D /* archeryShooterUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		12FE39381D8E174C00EBFA8D /* archeryShooter */ = {
+			isa = PBXGroup;
+			children = (
+				12FE39391D8E174C00EBFA8D /* AppDelegate.swift */,
+				12FE393B1D8E174C00EBFA8D /* GameScene.sks */,
+				12FE393D1D8E174C00EBFA8D /* GameScene.swift */,
+				12FE393F1D8E174C00EBFA8D /* GameViewController.swift */,
+				12FE39411D8E174C00EBFA8D /* Main.storyboard */,
+				12FE39441D8E174C00EBFA8D /* Assets.xcassets */,
+				12FE39461D8E174C00EBFA8D /* LaunchScreen.storyboard */,
+				12FE39491D8E174C00EBFA8D /* Info.plist */,
+			);
+			path = archeryShooter;
+			sourceTree = "<group>";
+		};
+		12FE39511D8E174D00EBFA8D /* archeryShooterTests */ = {
+			isa = PBXGroup;
+			children = (
+				12FE39521D8E174D00EBFA8D /* archeryShooterTests.swift */,
+				12FE39541D8E174D00EBFA8D /* Info.plist */,
+			);
+			path = archeryShooterTests;
+			sourceTree = "<group>";
+		};
+		12FE395C1D8E174D00EBFA8D /* archeryShooterUITests */ = {
+			isa = PBXGroup;
+			children = (
+				12FE395D1D8E174D00EBFA8D /* archeryShooterUITests.swift */,
+				12FE395F1D8E174D00EBFA8D /* Info.plist */,
+			);
+			path = archeryShooterUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		12FE39351D8E174C00EBFA8D /* archeryShooter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 12FE39621D8E174D00EBFA8D /* Build configuration list for PBXNativeTarget "archeryShooter" */;
+			buildPhases = (
+				12FE39321D8E174C00EBFA8D /* Sources */,
+				12FE39331D8E174C00EBFA8D /* Frameworks */,
+				12FE39341D8E174C00EBFA8D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = archeryShooter;
+			productName = archeryShooter;
+			productReference = 12FE39361D8E174C00EBFA8D /* archeryShooter.app */;
+			productType = "com.apple.product-type.application";
+		};
+		12FE394D1D8E174D00EBFA8D /* archeryShooterTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 12FE39651D8E174D00EBFA8D /* Build configuration list for PBXNativeTarget "archeryShooterTests" */;
+			buildPhases = (
+				12FE394A1D8E174D00EBFA8D /* Sources */,
+				12FE394B1D8E174D00EBFA8D /* Frameworks */,
+				12FE394C1D8E174D00EBFA8D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				12FE39501D8E174D00EBFA8D /* PBXTargetDependency */,
+			);
+			name = archeryShooterTests;
+			productName = archeryShooterTests;
+			productReference = 12FE394E1D8E174D00EBFA8D /* archeryShooterTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		12FE39581D8E174D00EBFA8D /* archeryShooterUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 12FE39681D8E174D00EBFA8D /* Build configuration list for PBXNativeTarget "archeryShooterUITests" */;
+			buildPhases = (
+				12FE39551D8E174D00EBFA8D /* Sources */,
+				12FE39561D8E174D00EBFA8D /* Frameworks */,
+				12FE39571D8E174D00EBFA8D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				12FE395B1D8E174D00EBFA8D /* PBXTargetDependency */,
+			);
+			name = archeryShooterUITests;
+			productName = archeryShooterUITests;
+			productReference = 12FE39591D8E174D00EBFA8D /* archeryShooterUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		12FE392E1D8E174C00EBFA8D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Brett Berry";
+				TargetAttributes = {
+					12FE39351D8E174C00EBFA8D = {
+						CreatedOnToolsVersion = 7.3;
+					};
+					12FE394D1D8E174D00EBFA8D = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = 12FE39351D8E174C00EBFA8D;
+					};
+					12FE39581D8E174D00EBFA8D = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = 12FE39351D8E174C00EBFA8D;
+					};
+				};
+			};
+			buildConfigurationList = 12FE39311D8E174C00EBFA8D /* Build configuration list for PBXProject "archeryShooter" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 12FE392D1D8E174C00EBFA8D;
+			productRefGroup = 12FE39371D8E174C00EBFA8D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				12FE39351D8E174C00EBFA8D /* archeryShooter */,
+				12FE394D1D8E174D00EBFA8D /* archeryShooterTests */,
+				12FE39581D8E174D00EBFA8D /* archeryShooterUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		12FE39341D8E174C00EBFA8D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				12FE393C1D8E174C00EBFA8D /* GameScene.sks in Resources */,
+				12FE39481D8E174C00EBFA8D /* LaunchScreen.storyboard in Resources */,
+				12FE39451D8E174C00EBFA8D /* Assets.xcassets in Resources */,
+				12FE39431D8E174C00EBFA8D /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		12FE394C1D8E174D00EBFA8D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		12FE39571D8E174D00EBFA8D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		12FE39321D8E174C00EBFA8D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				12FE393E1D8E174C00EBFA8D /* GameScene.swift in Sources */,
+				12FE39401D8E174C00EBFA8D /* GameViewController.swift in Sources */,
+				12FE393A1D8E174C00EBFA8D /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		12FE394A1D8E174D00EBFA8D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				12FE39531D8E174D00EBFA8D /* archeryShooterTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		12FE39551D8E174D00EBFA8D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				12FE395E1D8E174D00EBFA8D /* archeryShooterUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		12FE39501D8E174D00EBFA8D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 12FE39351D8E174C00EBFA8D /* archeryShooter */;
+			targetProxy = 12FE394F1D8E174D00EBFA8D /* PBXContainerItemProxy */;
+		};
+		12FE395B1D8E174D00EBFA8D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 12FE39351D8E174C00EBFA8D /* archeryShooter */;
+			targetProxy = 12FE395A1D8E174D00EBFA8D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		12FE39411D8E174C00EBFA8D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				12FE39421D8E174C00EBFA8D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		12FE39461D8E174C00EBFA8D /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				12FE39471D8E174C00EBFA8D /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		12FE39601D8E174D00EBFA8D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		12FE39611D8E174D00EBFA8D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		12FE39631D8E174D00EBFA8D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = archeryShooter/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.brettberry.archeryShooter;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		12FE39641D8E174D00EBFA8D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = archeryShooter/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.brettberry.archeryShooter;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		12FE39661D8E174D00EBFA8D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				INFOPLIST_FILE = archeryShooterTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.brettberry.archeryShooterTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/archeryShooter.app/archeryShooter";
+			};
+			name = Debug;
+		};
+		12FE39671D8E174D00EBFA8D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = archeryShooterTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.brettberry.archeryShooterTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/archeryShooter.app/archeryShooter";
+			};
+			name = Release;
+		};
+		12FE39691D8E174D00EBFA8D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				INFOPLIST_FILE = archeryShooterUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.brettberry.archeryShooterUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = archeryShooter;
+			};
+			name = Debug;
+		};
+		12FE396A1D8E174D00EBFA8D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = archeryShooterUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.brettberry.archeryShooterUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = archeryShooter;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		12FE39311D8E174C00EBFA8D /* Build configuration list for PBXProject "archeryShooter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				12FE39601D8E174D00EBFA8D /* Debug */,
+				12FE39611D8E174D00EBFA8D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		12FE39621D8E174D00EBFA8D /* Build configuration list for PBXNativeTarget "archeryShooter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				12FE39631D8E174D00EBFA8D /* Debug */,
+				12FE39641D8E174D00EBFA8D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		12FE39651D8E174D00EBFA8D /* Build configuration list for PBXNativeTarget "archeryShooterTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				12FE39661D8E174D00EBFA8D /* Debug */,
+				12FE39671D8E174D00EBFA8D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		12FE39681D8E174D00EBFA8D /* Build configuration list for PBXNativeTarget "archeryShooterUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				12FE39691D8E174D00EBFA8D /* Debug */,
+				12FE396A1D8E174D00EBFA8D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 12FE392E1D8E174C00EBFA8D /* Project object */;
+}
