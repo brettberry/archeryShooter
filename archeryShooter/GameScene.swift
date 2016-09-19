@@ -11,11 +11,14 @@ import SpriteKit
 class GameScene: SKScene {
     
     var scoreLabel: SKLabelNode!
+    var powerLabel: SKLabelNode!
+    
+    var arrowPoint: CGPoint!
     
     override init(size: CGSize) {
         super.init(size: size)
         createTarget()
-        createArrow(0)
+        createArrowWithIndex(0)
         createScoreLabel(0)
     }
     
@@ -94,15 +97,16 @@ class GameScene: SKScene {
         let xBody = SKPhysicsBody(circleOfRadius: xRingSize.width / 2, center: xRingPoint)
         xBody.affectedByGravity = false
         xBody.categoryBitMask = PhysicsType.target
-        xBody.collisionBitMask = PhysicsType.arrow
+        xBody.collisionBitMask = PhysicsType.none
+        xBody.contactTestBitMask = PhysicsType.arrow
         xBody.usesPreciseCollisionDetection = true
         xRing.physicsBody = xBody
     }
     
-    func createArrow(index: Int) {
+    func createArrowWithIndex(index: Int) {
         
         let arrowSize = CGSizeMake(5, 150)
-        let arrowPoint = CGPointMake(size.width / 2, size.height / 8)
+        arrowPoint = CGPointMake(size.width / 2, size.height / 8)
         let arrowRect = CGRectMake(arrowPoint.x, arrowPoint.y, arrowSize.width, arrowSize.height)
         let arrowPath = CGPathCreateWithRect(arrowRect, nil)
         let arrow = SKShapeNode(path: arrowPath)
@@ -111,17 +115,16 @@ class GameScene: SKScene {
         arrow.name = "arrow\(index)"
         addChild(arrow)
         
-        let arrowBody = SKPhysicsBody(rectangleOfSize: arrowSize)
+        let arrowBody = SKPhysicsBody(rectangleOfSize: arrowSize, center: arrowPoint)
         arrowBody.affectedByGravity = false
         arrowBody.categoryBitMask = PhysicsType.arrow
         arrowBody.contactTestBitMask = PhysicsType.target
-        arrowBody.collisionBitMask = PhysicsType.target
-        arrowBody.usesPreciseCollisionDetection = true 
+        arrowBody.collisionBitMask = PhysicsType.none
+        arrowBody.usesPreciseCollisionDetection = true
         arrow.physicsBody = arrowBody
         
         let fadeIn = SKAction.fadeInWithDuration(1.0)
         arrow.runAction(fadeIn)
-        
     }
     
     func createScoreLabel(score: Int) {
@@ -131,6 +134,16 @@ class GameScene: SKScene {
         scoreLabel.fontColor = UIColor.lightGrayColor()
         scoreLabel.position = CGPointMake(size.width / 2, size.height - 75)
         addChild(scoreLabel)
+    }
+    
+    func createPowerLabel(power: CGFloat) {
+        powerLabel = SKLabelNode()
+        powerLabel.text = "power: \(power)"
+        powerLabel.fontSize = UIFont.systemFontSize()
+        powerLabel.fontColor = UIColor.lightGrayColor()
+        powerLabel.position = CGPointMake(size.width / 2, size.height / 2)
+        powerLabel.name = "powerLabel"
+        addChild(powerLabel)
     }
 }
 
