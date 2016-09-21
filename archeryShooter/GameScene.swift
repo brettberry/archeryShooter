@@ -40,6 +40,14 @@ class GameScene: SKScene {
         fiveRing.strokeColor = Colors.blue
         addChild(fiveRing)
         
+        let fiveBody = SKPhysicsBody(circleOfRadius: fiveRingSize.width / 2, center: fiveRingPoint)
+        fiveBody.affectedByGravity = false
+        fiveBody.categoryBitMask = PhysicsType.fiveRing
+        fiveBody.collisionBitMask = PhysicsType.none
+        fiveBody.contactTestBitMask = PhysicsType.arrow
+        fiveBody.usesPreciseCollisionDetection = true
+        fiveRing.physicsBody = fiveBody
+        
         let sixRingSize = CGSizeMake(target + 25, target + 25)
         let sixRingPoint = CGPointMake((size.width - sixRingSize.width) / 2, (size.height - sixRingSize.height) / 2 + targetVertOffset)
         let sixRingRect = CGRectMake(sixRingPoint.x, sixRingPoint.y, sixRingSize.width, sixRingSize.height)
@@ -49,6 +57,14 @@ class GameScene: SKScene {
         sixRing.strokeColor = Colors.blue
         addChild(sixRing)
         
+        let sixBody = SKPhysicsBody(circleOfRadius: sixRingSize.width / 2, center: sixRingPoint)
+        sixBody.affectedByGravity = false
+        sixBody.categoryBitMask = PhysicsType.sixRing
+        sixBody.collisionBitMask = PhysicsType.none
+        sixBody.contactTestBitMask = PhysicsType.arrow
+        sixBody.usesPreciseCollisionDetection = true
+        sixRing.physicsBody = sixBody
+        
         let sevenRingSize = CGSizeMake(target, target)
         let sevenRingPoint = CGPointMake((size.width - sevenRingSize.width) / 2, (size.height - sevenRingSize.height) / 2 + targetVertOffset)
         let sevenRingRect = CGRectMake(sevenRingPoint.x, sevenRingPoint.y, sevenRingSize.width, sevenRingSize.height)
@@ -57,6 +73,14 @@ class GameScene: SKScene {
         sevenRing.fillColor = Colors.red
         sevenRing.strokeColor = Colors.red
         addChild(sevenRing)
+        
+        let sevenBody = SKPhysicsBody(circleOfRadius: sevenRingSize.width / 2, center: sevenRingPoint)
+        sevenBody.affectedByGravity = false
+        sevenBody.categoryBitMask = PhysicsType.sevenRing
+        sevenBody.collisionBitMask = PhysicsType.none
+        sevenBody.contactTestBitMask = PhysicsType.arrow
+        sevenBody.usesPreciseCollisionDetection = true
+        sevenRing.physicsBody = sevenBody
     
         let eightRingSize = CGSizeMake(target - 25, target - 25)
         let eightRingPoint = CGPointMake((size.width - eightRingSize.width) / 2, (size.height - eightRingSize.height) / 2 + targetVertOffset)
@@ -67,6 +91,14 @@ class GameScene: SKScene {
         eightRing.strokeColor = Colors.red
         addChild(eightRing)
         
+        let eightBody = SKPhysicsBody(circleOfRadius: eightRingSize.width / 2, center: eightRingPoint)
+        eightBody.affectedByGravity = false
+        eightBody.categoryBitMask = PhysicsType.eightRing
+        eightBody.collisionBitMask = PhysicsType.none
+        eightBody.contactTestBitMask = PhysicsType.arrow
+        eightBody.usesPreciseCollisionDetection = true
+        eightRing.physicsBody = eightBody
+        
         let nineRingSize = CGSizeMake(target - 50, target - 50)
         let nineRingPoint = CGPointMake((size.width - nineRingSize.width) / 2, (size.height - nineRingSize.height) / 2 + targetVertOffset)
         let nineRingRect = CGRectMake(nineRingPoint.x, nineRingPoint.y, nineRingSize.width, nineRingSize.height)
@@ -76,6 +108,14 @@ class GameScene: SKScene {
         nineRing.strokeColor = Colors.yellow
         addChild(nineRing)
         
+        let nineBody = SKPhysicsBody(circleOfRadius: nineRingSize.width / 2, center: nineRingPoint)
+        nineBody.affectedByGravity = false
+        nineBody.categoryBitMask = PhysicsType.nineRing
+        nineBody.collisionBitMask = PhysicsType.none
+        nineBody.contactTestBitMask = PhysicsType.arrow
+        nineBody.usesPreciseCollisionDetection = true
+        nineRing.physicsBody = nineBody
+        
         let tenRingSize = CGSizeMake(target - 75, target - 75)
         let tenRingPoint = CGPointMake((size.width - tenRingSize.width) / 2, (size.height - tenRingSize.height) / 2 + targetVertOffset)
         let tenRingRect = CGRectMake(tenRingPoint.x, tenRingPoint.y, tenRingSize.width, tenRingSize.height)
@@ -84,6 +124,14 @@ class GameScene: SKScene {
         tenRing.fillColor = Colors.yellow
         tenRing.strokeColor = Colors.yellow
         addChild(tenRing)
+        
+        let tenBody = SKPhysicsBody(circleOfRadius: tenRingSize.width / 2, center: tenRingPoint)
+        tenBody.affectedByGravity = false
+        tenBody.categoryBitMask = PhysicsType.tenRing
+        tenBody.collisionBitMask = PhysicsType.none
+        tenBody.contactTestBitMask = PhysicsType.arrow
+        tenBody.usesPreciseCollisionDetection = true
+        tenRing.physicsBody = tenBody
         
         let xRingSize = CGSizeMake(target - 100, target - 100)
         let xRingPoint = CGPointMake((size.width - xRingSize.width) / 2, (size.height - xRingSize.height) / 2 + targetVertOffset)
@@ -96,7 +144,7 @@ class GameScene: SKScene {
         
         let xBody = SKPhysicsBody(circleOfRadius: xRingSize.width / 2, center: xRingPoint)
         xBody.affectedByGravity = false
-        xBody.categoryBitMask = PhysicsType.target
+        xBody.categoryBitMask = PhysicsType.xRing
         xBody.collisionBitMask = PhysicsType.none
         xBody.contactTestBitMask = PhysicsType.arrow
         xBody.usesPreciseCollisionDetection = true
@@ -106,7 +154,7 @@ class GameScene: SKScene {
     func createArrowWithIndex(index: Int) {
         
         let arrowSize = CGSizeMake(5, 150)
-        arrowPoint = CGPointMake(size.width / 2, size.height / 8)
+        arrowPoint = CGPointMake((size.width - arrowSize.width) / 2, (size.height - arrowSize.height) / 2)
         let arrowRect = CGRectMake(arrowPoint.x, arrowPoint.y, arrowSize.width, arrowSize.height)
         let arrowPath = CGPathCreateWithRect(arrowRect, nil)
         let arrow = SKShapeNode(path: arrowPath)
@@ -118,7 +166,10 @@ class GameScene: SKScene {
         let arrowBody = SKPhysicsBody(rectangleOfSize: arrowSize, center: arrowPoint)
         arrowBody.affectedByGravity = false
         arrowBody.categoryBitMask = PhysicsType.arrow
-        arrowBody.contactTestBitMask = PhysicsType.target
+        
+        arrowBody.contactTestBitMask = PhysicsType.xRing | PhysicsType.tenRing | PhysicsType.nineRing | PhysicsType.eightRing | PhysicsType.sevenRing |
+            PhysicsType.sixRing | PhysicsType.fiveRing
+        
         arrowBody.collisionBitMask = PhysicsType.none
         arrowBody.usesPreciseCollisionDetection = true
         arrow.physicsBody = arrowBody
