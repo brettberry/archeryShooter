@@ -11,9 +11,10 @@ import SpriteKit
 class GameScene: SKScene {
     
     var scoreLabel: SKLabelNode!
-    var powerLabel: SKLabelNode!
-    
-    var arrowPoint: CGPoint!
+    var targetHit: SKPhysicsJointFixed!
+    var fiveRing: SKShapeNode!
+    var arrow: SKShapeNode!
+    var arrowRect: CGRect!
     
     override init(size: CGSize) {
         super.init(size: size)
@@ -35,16 +36,18 @@ class GameScene: SKScene {
         let fiveRingPoint = CGPointMake((size.width - fiveRingSize.width) / 2, (size.height - fiveRingSize.height) / 2 + targetVertOffset)
         let fiveRingRect = CGRectMake(fiveRingPoint.x, fiveRingPoint.y, fiveRingSize.width, fiveRingSize.height)
         let fiveRingPath = CGPathCreateWithEllipseInRect(fiveRingRect, nil)
-        let fiveRing = SKShapeNode(path: fiveRingPath)
+        fiveRing = SKShapeNode(path: fiveRingPath)
         fiveRing.fillColor = Colors.blue
         fiveRing.strokeColor = Colors.blue
         addChild(fiveRing)
         
-        let fiveBody = SKPhysicsBody(circleOfRadius: fiveRingSize.width / 2, center: fiveRingPoint)
+        let center = CGPointMake(fiveRingPoint.x + fiveRingSize.width / 2, fiveRingPoint.y + fiveRingSize.height / 2)
+        let fiveBody = SKPhysicsBody(circleOfRadius: fiveRingSize.width / 2, center: center)
         fiveBody.affectedByGravity = false
-        fiveBody.categoryBitMask = PhysicsType.fiveRing
+        fiveBody.categoryBitMask = PhysicsType.target
         fiveBody.collisionBitMask = PhysicsType.none
         fiveBody.contactTestBitMask = PhysicsType.arrow
+        fiveBody.dynamic = false
         fiveBody.usesPreciseCollisionDetection = true
         fiveRing.physicsBody = fiveBody
         
@@ -154,21 +157,21 @@ class GameScene: SKScene {
     func createArrowWithIndex(index: Int) {
         
         let arrowSize = CGSizeMake(5, 150)
-        arrowPoint = CGPointMake((size.width - arrowSize.width) / 2, (size.height - arrowSize.height) / 2)
-        let arrowRect = CGRectMake(arrowPoint.x, arrowPoint.y, arrowSize.width, arrowSize.height)
+        let arrowPoint = CGPointMake((size.width - arrowSize.width) / 2, (size.height - arrowSize.height) / 2 - 100)
+        arrowRect = CGRectMake(arrowPoint.x, arrowPoint.y, arrowSize.width, arrowSize.height)
         let arrowPath = CGPathCreateWithRect(arrowRect, nil)
-        let arrow = SKShapeNode(path: arrowPath)
+        arrow = SKShapeNode(path: arrowPath)
         arrow.fillColor = UIColor.blackColor()
         arrow.strokeColor = UIColor.clearColor()
         arrow.name = "arrow\(index)"
         addChild(arrow)
         
-        let arrowBody = SKPhysicsBody(rectangleOfSize: arrowSize, center: arrowPoint)
+        let center = CGPointMake(arrowPoint.x + arrowSize.width / 2, arrowPoint.y + arrowSize.height / 2)
+        let arrowBody = SKPhysicsBody(rectangleOfSize: arrowSize, center: center)
         arrowBody.affectedByGravity = false
         arrowBody.categoryBitMask = PhysicsType.arrow
-        
-        arrowBody.contactTestBitMask = PhysicsType.xRing | PhysicsType.tenRing | PhysicsType.nineRing | PhysicsType.eightRing | PhysicsType.sevenRing |
-            PhysicsType.sixRing | PhysicsType.fiveRing
+        arrowBody.contactTestBitMask = PhysicsType.target
+        // PhysicsType.xRing | PhysicsType.tenRing | PhysicsType.nineRing | PhysicsType.eightRing | PhysicsType.sevenRing | PhysicsType.sixRing | PhysicsType.fiveRing
         
         arrowBody.collisionBitMask = PhysicsType.none
         arrowBody.usesPreciseCollisionDetection = true
@@ -187,14 +190,9 @@ class GameScene: SKScene {
         addChild(scoreLabel)
     }
     
-    func createPowerLabel(power: CGFloat) {
-        powerLabel = SKLabelNode()
-        powerLabel.text = "power: \(power)"
-        powerLabel.fontSize = UIFont.systemFontSize()
-        powerLabel.fontColor = UIColor.lightGrayColor()
-        powerLabel.position = CGPointMake(size.width / 2, size.height / 2)
-        powerLabel.name = "powerLabel"
-        addChild(powerLabel)
+    func joinArrowToTarget() {
+        targetHit = SKPhysicsJointFixed.jointWithBodyA(arrow.physicsBody!, bodyB: fiveRing.physicsBody!, anchor: CGPointZero)
+        physicsWorld.addJoint(targetHit)
     }
 }
 

@@ -19,4 +19,5 @@ struct PhysicsType {
     static let sevenRing:   UInt32 = 6
     static let sixRing:     UInt32 = 7
     static let fiveRing:    UInt32 = 8
+    static let target:      UInt32 = 9
 }
