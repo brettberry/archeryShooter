@@ -15,7 +15,8 @@ class GameScene: SKScene {
     var fiveRing: SKShapeNode!
     var arrow: SKShapeNode!
     var arrowRect: CGRect!
-    var fiveRingSize: CGSize! 
+    var fiveRingSize: CGSize!
+    var sixRing: SKShapeNode!
     
     override init(size: CGSize) {
         super.init(size: size)
@@ -57,7 +58,7 @@ class GameScene: SKScene {
         let sixRingPoint = CGPointMake((size.width - sixRingSize.width) / 2, (size.height - sixRingSize.height) / 2 + targetVertOffset)
         let sixRingRect = CGRectMake(sixRingPoint.x, sixRingPoint.y, sixRingSize.width, sixRingSize.height)
         let sixRingPath = CGPathCreateWithEllipseInRect(sixRingRect, nil)
-        let sixRing = SKShapeNode(path: sixRingPath)
+        sixRing = SKShapeNode(path: sixRingPath)
         sixRing.fillColor = Colors.blue
         sixRing.strokeColor = Colors.blue
         sixRing.name = "Six"
@@ -168,14 +169,6 @@ class GameScene: SKScene {
         xLabel.fontSize = UIFont.systemFontSize() * 1.5
         xLabel.position = CGPointMake(xRingPoint.x + xRingSize.width / 2, xRingPoint.y + xRingSize.height / 2)
         xRing.addChild(xLabel)
-        
-        let testSize = CGSizeMake(100, 10)
-        let testPoint = CGPointMake(size.width / 2, ((size.height - fiveRingSize.height) / 2) + (size.height / 5))
-        let testRect = CGRectMake(testPoint.x, testPoint.y, testSize.width, testSize.height)
-        let testPath = CGPathCreateWithRect(testRect, nil)
-        let test = SKShapeNode(path: testPath)
-        test.fillColor = UIColor.redColor()
-        addChild(test)
     }
     
     func createArrowWithIndex(index: Int) {
@@ -230,8 +223,8 @@ class GameScene: SKScene {
         addChild(scoreLabel)
     }
     
-    func joinArrowToTarget() {
-        targetHit = SKPhysicsJointFixed.jointWithBodyA(arrow.physicsBody!, bodyB: fiveRing.physicsBody!, anchor: CGPointZero)
+    func joinArrowToTarget(physicsBodyA: SKPhysicsBody, physicsBodyB: SKPhysicsBody) {
+        targetHit = SKPhysicsJointFixed.jointWithBodyA(physicsBodyA, bodyB: physicsBodyB, anchor: CGPointZero)
         physicsWorld.addJoint(targetHit)
     }
 }
