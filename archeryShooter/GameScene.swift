@@ -17,6 +17,7 @@ class GameScene: SKScene {
     var arrowRect: CGRect!
     var fiveRingSize: CGSize!
     var sixRing: SKShapeNode!
+    var arrowhead: SKShapeNode!
     
     override init(size: CGSize) {
         super.init(size: size)
@@ -44,14 +45,14 @@ class GameScene: SKScene {
         fiveRing.name = "Five"
         addChild(fiveRing)
         
-        let center = CGPointMake(fiveRingPoint.x + fiveRingSize.width / 2, fiveRingPoint.y + fiveRingSize.height / 2)
-        let fiveBody = SKPhysicsBody(circleOfRadius: fiveRingSize.width / 2, center: center)
+        let fiveCenter = CGPointMake(fiveRingPoint.x + fiveRingSize.width / 2, fiveRingPoint.y + fiveRingSize.height / 2)
+        let fiveBody = SKPhysicsBody(circleOfRadius: fiveRingSize.width / 2, center: fiveCenter)
         fiveBody.affectedByGravity = false
         fiveBody.categoryBitMask = PhysicsType.target
         fiveBody.collisionBitMask = PhysicsType.none
         fiveBody.contactTestBitMask = PhysicsType.arrow
         fiveBody.dynamic = false
-        fiveBody.usesPreciseCollisionDetection = true
+//        fiveBody.usesPreciseCollisionDetection = true
         fiveRing.physicsBody = fiveBody
         
         let sixRingSize = CGSizeMake(target + 25, target + 25)
@@ -64,7 +65,8 @@ class GameScene: SKScene {
         sixRing.name = "Six"
         addChild(sixRing)
         
-        let sixBody = SKPhysicsBody(circleOfRadius: sixRingSize.width / 2, center: sixRingPoint)
+        let sixCenter = CGPointMake(sixRingPoint.x + sixRingSize.width / 2, sixRingPoint.y + sixRingSize.height / 2)
+        let sixBody = SKPhysicsBody(circleOfRadius: sixRingSize.width / 2, center: sixCenter)
         sixBody.affectedByGravity = false
         sixBody.categoryBitMask = PhysicsType.sixRing
         sixBody.collisionBitMask = PhysicsType.none
@@ -82,7 +84,8 @@ class GameScene: SKScene {
         sevenRing.name = "Seven"
         addChild(sevenRing)
         
-        let sevenBody = SKPhysicsBody(circleOfRadius: sevenRingSize.width / 2, center: sevenRingPoint)
+        let sevenCenter = CGPointMake(sevenRingPoint.x + sevenRingSize.width / 2, sevenRingPoint.y + sevenRingSize.height / 2)
+        let sevenBody = SKPhysicsBody(circleOfRadius: sevenRingSize.width / 2, center: sevenCenter)
         sevenBody.affectedByGravity = false
         sevenBody.categoryBitMask = PhysicsType.sevenRing
         sevenBody.collisionBitMask = PhysicsType.none
@@ -100,7 +103,8 @@ class GameScene: SKScene {
         eightRing.name = "Eight"
         addChild(eightRing)
         
-        let eightBody = SKPhysicsBody(circleOfRadius: eightRingSize.width / 2, center: eightRingPoint)
+        let eightCenter = CGPointMake(eightRingPoint.x + eightRingSize.width / 2, eightRingPoint.y + eightRingSize.height / 2)
+        let eightBody = SKPhysicsBody(circleOfRadius: eightRingSize.width / 2, center: eightCenter)
         eightBody.affectedByGravity = false
         eightBody.categoryBitMask = PhysicsType.eightRing
         eightBody.collisionBitMask = PhysicsType.none
@@ -118,7 +122,8 @@ class GameScene: SKScene {
         nineRing.name = "Nine"
         addChild(nineRing)
         
-        let nineBody = SKPhysicsBody(circleOfRadius: nineRingSize.width / 2, center: nineRingPoint)
+        let nineCenter = CGPointMake(nineRingPoint.x + nineRingSize.width / 2, nineRingPoint.y + nineRingSize.height / 2)
+        let nineBody = SKPhysicsBody(circleOfRadius: nineRingSize.width / 2, center: nineCenter)
         nineBody.affectedByGravity = false
         nineBody.categoryBitMask = PhysicsType.nineRing
         nineBody.collisionBitMask = PhysicsType.none
@@ -136,7 +141,8 @@ class GameScene: SKScene {
         tenRing.name = "Ten"
         addChild(tenRing)
         
-        let tenBody = SKPhysicsBody(circleOfRadius: tenRingSize.width / 2, center: tenRingPoint)
+        let tenCenter = CGPointMake(tenRingPoint.x + tenRingSize.width / 2, tenRingPoint.y + tenRingSize.height / 2)
+        let tenBody = SKPhysicsBody(circleOfRadius: tenRingSize.width / 2, center: tenCenter)
         tenBody.affectedByGravity = false
         tenBody.categoryBitMask = PhysicsType.tenRing
         tenBody.collisionBitMask = PhysicsType.none
@@ -154,7 +160,8 @@ class GameScene: SKScene {
         xRing.name = "X"
         addChild(xRing)
         
-        let xBody = SKPhysicsBody(circleOfRadius: xRingSize.width / 2, center: xRingPoint)
+        let xCenter = CGPointMake(xRingPoint.x + xRingSize.width / 2, xRingPoint.y + xRingSize.height / 2)
+        let xBody = SKPhysicsBody(circleOfRadius: xRingSize.width / 2, center: xCenter)
         xBody.affectedByGravity = false
         xBody.categoryBitMask = PhysicsType.xRing
         xBody.collisionBitMask = PhysicsType.none
@@ -190,7 +197,7 @@ class GameScene: SKScene {
         arrowBody.categoryBitMask = PhysicsType.arrow
         arrowBody.contactTestBitMask = PhysicsType.target
         arrowBody.collisionBitMask = PhysicsType.none
-        arrowBody.usesPreciseCollisionDetection = true
+//        arrowBody.usesPreciseCollisionDetection = true
         arrow.physicsBody = arrowBody
         
         let fletchSize = CGSizeMake(arrowSize.width * 2, arrowSize.height / 4)
@@ -209,6 +216,27 @@ class GameScene: SKScene {
         fletch2.fillColor = UIColor.greenColor()
         fletch2.strokeColor = UIColor.clearColor()
         arrow.addChild(fletch2)
+        
+        let arrowHeadSize = CGSizeMake(arrowSize.width, arrowSize.width)
+        let arrowHeadPoint = CGPoint(x: arrowPoint.x, y: arrowPoint.y + arrowSize.height)
+        let arrowHeadRect = CGRectMake(arrowHeadPoint.x, arrowHeadPoint.y, arrowHeadSize.width, arrowHeadSize.height)
+        let arrowHeadPath = CGPathCreateWithEllipseInRect(arrowHeadRect, nil)
+        arrowhead = SKShapeNode(path: arrowHeadPath)
+        arrowhead.fillColor = UIColor.blackColor()
+        arrowhead.strokeColor = UIColor.clearColor()
+        arrowhead.name = "arrowhead\(index)"
+        addChild(arrowhead)
+        
+        let arrowheadCenter = CGPointMake(arrowPoint.x + arrowHeadSize.width / 2, arrowPoint.y + arrowSize.height + arrowHeadSize.height / 2)
+        let arrowheadBody = SKPhysicsBody(circleOfRadius: arrowSize.width / 2, center: arrowheadCenter)
+        arrowheadBody.affectedByGravity = false
+        arrowheadBody.categoryBitMask = PhysicsType.arrow
+        arrowheadBody.contactTestBitMask = PhysicsType.target
+        arrowheadBody.collisionBitMask = PhysicsType.none
+        arrowhead.physicsBody = arrowheadBody
+        
+        let arrowJoint = SKPhysicsJointFixed.jointWithBodyA(arrow.physicsBody!, bodyB: arrowhead.physicsBody!, anchor: CGPoint.zero)
+        physicsWorld.addJoint(arrowJoint)
         
         let fadeIn = SKAction.fadeInWithDuration(0.5)
         arrow.runAction(fadeIn)

@@ -24,6 +24,7 @@ class GameViewController: UIViewController {
         gameScene.physicsWorld.contactDelegate = self
         gameScene.delegate = self
         configurePanGesture()
+//        skView?.showsPhysics = true 
     }
 
     override func prefersStatusBarHidden() -> Bool {
@@ -78,8 +79,8 @@ class GameViewController: UIViewController {
         
         let arrow = gameScene.childNodeWithName("arrow\(currrentArrowIndex)")
         arrow?.position = CGPointMake(translation.x, -translation.y)
-
-        print("power: \(power)")
+        
+//        print("power: \(power)")
         currentPower = power
     }
 }
@@ -88,13 +89,16 @@ extension GameViewController: SKSceneDelegate {
     
     func update(currentTime: NSTimeInterval, forScene scene: SKScene) {
         
-        let arrowNode = scene.childNodeWithName("arrow\(currrentArrowIndex)")
+        let arrowNode = gameScene.childNodeWithName("arrow\(currrentArrowIndex)")
+        let hit = arrowNode?.childNodeWithName("arrowhead\(currrentArrowIndex)")
         let lowestPoint = ((gameScene.size.height - gameScene.fiveRingSize.height) / 2) + (gameScene.size.height / 5) - 250
         
         if arrowNode?.position.y > lowestPoint {
             gameScene.joinArrowToTarget((arrowNode?.physicsBody)!, physicsBodyB: (gameScene.fiveRing?.physicsBody)!)
-            print(arrowNode?.position)
-            print(scene.nodeAtPoint((arrowNode?.position)!))
+            
+//            print(gameScene.convertPoint((hit?.position)!, fromNode: arrowNode!))
+//            print(gameScene.nodeAtPoint((arrowNode?.position)!))
+
             let delay = SKAction.waitForDuration(0.5)
             let fade = SKAction.fadeOutWithDuration(0.1)
             let arrowExit = SKAction.sequence([delay, fade])
