@@ -59,8 +59,11 @@ class GameViewController: UIViewController {
             
             let respawnDelay = SKAction.waitForDuration(1.0)
             let respawn = SKAction.runBlock() {
+                
+                print(self.gameScene.arrowhead.physicsBody?.allContactedBodies())
                 self.currrentArrowIndex += 1
                 self.gameScene.createArrowWithIndex(self.currrentArrowIndex)
+
             }
             
             let reload = SKAction.sequence([respawnDelay, respawn])
@@ -69,18 +72,14 @@ class GameViewController: UIViewController {
     }
     
     func aimArrow(translation: CGPoint) {
-        
         let changeInPower = translation.y
         let powerScale: CGFloat = 3.0
-        
         var power = changeInPower / powerScale
         power = max(0, power)
         power = min(power, 100)
         
         let arrow = gameScene.childNodeWithName("arrow\(currrentArrowIndex)")
         arrow?.position = CGPointMake(translation.x, -translation.y)
-        
-//        print("power: \(power)")
         currentPower = power
     }
 }
@@ -89,16 +88,12 @@ extension GameViewController: SKSceneDelegate {
     
     func update(currentTime: NSTimeInterval, forScene scene: SKScene) {
         
-        let arrowNode = gameScene.childNodeWithName("arrow\(currrentArrowIndex)")
-        let hit = arrowNode?.childNodeWithName("arrowhead\(currrentArrowIndex)")
+        let arrowNode = scene.childNodeWithName("arrow\(currrentArrowIndex)")
         let lowestPoint = ((gameScene.size.height - gameScene.fiveRingSize.height) / 2) + (gameScene.size.height / 5) - 250
         
         if arrowNode?.position.y > lowestPoint {
             gameScene.joinArrowToTarget((arrowNode?.physicsBody)!, physicsBodyB: (gameScene.fiveRing?.physicsBody)!)
             
-//            print(gameScene.convertPoint((hit?.position)!, fromNode: arrowNode!))
-//            print(gameScene.nodeAtPoint((arrowNode?.position)!))
-
             let delay = SKAction.waitForDuration(0.5)
             let fade = SKAction.fadeOutWithDuration(0.1)
             let arrowExit = SKAction.sequence([delay, fade])
@@ -110,10 +105,9 @@ extension GameViewController: SKSceneDelegate {
 
 extension GameViewController: SKPhysicsContactDelegate {
     
-    func didBeginContact(contact: SKPhysicsContact) {
-//        let arrowNode = gameScene.childNodeWithName("arrow\(currrentArrowIndex)")
-//        gameScene.joinArrowToTarget((arrowNode?.physicsBody)!, physicsBodyB: (gameScene.fiveRing?.physicsBody)!)
-//        print(gameScene.nodeAtPoint(contact.contactPoint))
+    func didEndContact(contact: SKPhysicsContact) {
+        
+        
     }
 }
 

@@ -218,12 +218,12 @@ class GameScene: SKScene {
         arrow.addChild(fletch2)
         
         let arrowHeadSize = CGSizeMake(arrowSize.width, arrowSize.width)
-        let arrowHeadPoint = CGPoint(x: arrowPoint.x, y: arrowPoint.y + arrowSize.height)
+        let arrowHeadPoint = CGPoint(x: arrowPoint.x, y: arrowPoint.y + arrowSize.height - arrowHeadSize.height / 2)
         let arrowHeadRect = CGRectMake(arrowHeadPoint.x, arrowHeadPoint.y, arrowHeadSize.width, arrowHeadSize.height)
         let arrowHeadPath = CGPathCreateWithEllipseInRect(arrowHeadRect, nil)
         arrowhead = SKShapeNode(path: arrowHeadPath)
         arrowhead.fillColor = UIColor.blackColor()
-        arrowhead.strokeColor = UIColor.clearColor()
+        arrowhead.strokeColor = UIColor.blackColor()
         arrowhead.name = "arrowhead\(index)"
         addChild(arrowhead)
         
@@ -259,12 +259,10 @@ class GameScene: SKScene {
 
 
 struct Colors {
-    
     static let blue = UIColor(red: 105/255, green: 127/255, blue: 1, alpha: 1)
     static let red = UIColor(red: 1, green: 97/255, blue: 76/255, alpha: 1)
     static let yellow = UIColor(red: 1, green: 246/255, blue: 116/255, alpha: 1)
     static let darkBlue = UIColor(red: 80/255, green: 97/255, blue: 194/255, alpha: 1)
     static let darkRed = UIColor(red: 245/255, green: 46/255, blue: 11/255, alpha: 1)
     static let darkYellow = UIColor(red: 247/255, green: 206/255, blue: 66/255, alpha: 1)
-    
 }
