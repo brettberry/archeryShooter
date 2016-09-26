@@ -19,9 +19,9 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         
         let skView = view as? SKView
-        gameScene = GameScene(size: view.bounds.size)
+        gameScene = GameScene(size: view.bounds.size, gameDelegate: self)
+        gameScene.setupGameScene()
         skView?.presentScene(gameScene)
-//        gameScene.physicsWorld.contactDelegate = self
         gameScene.delegate = self
         configurePanGesture()
     }
@@ -55,6 +55,9 @@ class GameViewController: UIViewController {
                 let hits = self.gameScene.arrowhead.physicsBody!.allContactedBodies()
                 self.scoreArrow(hits)
                 self.currrentArrowIndex += 1
+                if self.currrentArrowIndex == 10 {
+                    self.initiateGameOver()
+                }
                 self.gameScene.createArrowWithIndex(self.currrentArrowIndex)
             }
             
@@ -101,6 +104,13 @@ class GameViewController: UIViewController {
             gameScene.scoreLabel.text = "\(gameScene.score)"
         }
     }
+    
+    private func initiateGameOver() {
+        let skView = view as? SKView
+        let transition = SKTransition.fadeWithColor(UIColor.darkGrayColor(), duration: 1.0)
+        let gameOver = GameOverScene(size: view.frame.size, score: gameScene.score, xCount: gameScene.xCount, gameViewController: self)
+        skView?.presentScene(gameOver, transition: transition)
+    }
 }
 
 extension GameViewController: SKSceneDelegate {
@@ -121,12 +131,16 @@ extension GameViewController: SKSceneDelegate {
     }
 }
 
+extension GameViewController: GameDelegate {
 
-//extension GameViewController: SKPhysicsContactDelegate {
-//    
-//    func didEndContact(contact: SKPhysicsContact) {
-//        
-//        
-//    }
-//}
+    // stateful things go here
+    func gameShouldStart() {
+        currrentArrowIndex = 0
+        gameScene.score = 0
+        gameScene.xCount = 0
+        gameScene.createArrowWithIndex(currrentArrowIndex)
+    }
+
+}
+
 

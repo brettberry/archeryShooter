@@ -11,8 +11,8 @@ import SpriteKit
 class GameScene: SKScene {
     
     var score: Int = 0
-    var scoreLabel: SKLabelNode!
     var xCount: Int = 0
+    var scoreLabel = SKLabelNode()
     var xCountLabel = SKLabelNode()
     
     var fiveRing: SKShapeNode!
@@ -23,11 +23,26 @@ class GameScene: SKScene {
     var arrowhead: SKShapeNode!
     var targetHit: SKPhysicsJointFixed!
     
-    override init(size: CGSize) {
+    var gameScene: SKScene!
+    var gameDelegate: GameDelegate!
+    
+    init(size: CGSize, gameDelegate: GameDelegate) {
         super.init(size: size)
+        self.gameDelegate = gameDelegate
+   }
+    
+    func setupGameScene() {
+        
+        if gameScene == nil {
+            gameScene = SKScene(size: frame.size)
+        }
+        
+        let transition = SKTransition.fadeWithColor(UIColor.darkGrayColor(), duration: 1.0)
+        view?.presentScene(gameScene, transition: transition)
+        
         createTarget()
-        createArrowWithIndex(0)
-        createScoreLabel(score, xCount: xCount)
+        gameDelegate.gameShouldStart()
+        createScoreLabel(score, withXCount: xCount)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -35,9 +50,8 @@ class GameScene: SKScene {
     }
     
     private func createTarget() {
-        
         let target = size.width / 3
-        let targetVertOffset = size.height / 5
+        let targetVertOffset = size.height / 6
         
         fiveRingSize = CGSizeMake(target + 50, target + 50)
         let fiveRingPoint = CGPointMake((size.width - fiveRingSize.width) / 2, (size.height - fiveRingSize.height) / 2 + targetVertOffset)
@@ -148,7 +162,7 @@ class GameScene: SKScene {
         tenBody.contactTestBitMask = PhysicsType.arrow
         tenRing.physicsBody = tenBody
         
-        let xRingSize = CGSizeMake(target - 100, target - 100)
+        let xRingSize = CGSizeMake(target - 90, target - 90)
         let xRingPoint = CGPointMake((size.width - xRingSize.width) / 2, (size.height - xRingSize.height) / 2 + targetVertOffset)
         let xRingRect = CGRectMake(xRingPoint.x, xRingPoint.y, xRingSize.width, xRingSize.height)
         let xRingPath = CGPathCreateWithEllipseInRect(xRingRect, nil)
@@ -176,9 +190,8 @@ class GameScene: SKScene {
     }
     
     func createArrowWithIndex(index: Int) {
-        
         let arrowSize = CGSizeMake(5, 150)
-        let arrowPoint = CGPointMake((size.width - arrowSize.width) / 2, size.height / 4 )
+        let arrowPoint = CGPointMake((size.width - arrowSize.width) / 2, size.height / 5 )
         arrowRect = CGRectMake(arrowPoint.x, arrowPoint.y, arrowSize.width, arrowSize.height)
         let arrowPath = CGPathCreateWithRect(arrowRect, nil)
         arrow = SKShapeNode(path: arrowPath)
@@ -238,8 +251,7 @@ class GameScene: SKScene {
         arrow.runAction(fadeIn)
     }
     
-    func createScoreLabel(score: Int, xCount: Int) {
-        scoreLabel = SKLabelNode()
+    func createScoreLabel(score: Int, withXCount: Int) {
         scoreLabel.text = "\(score)"
         scoreLabel.fontSize = UIFont.systemFontSize() * 4
         scoreLabel.fontColor = UIColor.lightGrayColor()
@@ -250,7 +262,7 @@ class GameScene: SKScene {
         xCountLabel.fontSize = UIFont.systemFontSize() * 2
         xCountLabel.position = CGPointMake(size.width / 2, scoreLabel.position.y - xCountLabel.fontSize)
         xCountLabel.fontColor = UIColor.lightGrayColor()
-        xCountLabel.alpha = 0.6
+        xCountLabel.alpha = 0.75
         addChild(xCountLabel)
     }
     
