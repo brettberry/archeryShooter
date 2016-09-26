@@ -11,6 +11,8 @@ import SpriteKit
 class GameScene: SKScene {
     
     var scoreLabel: SKLabelNode!
+    var score: Int = 0
+    
     var targetHit: SKPhysicsJointFixed!
     var fiveRing: SKShapeNode!
     var arrow: SKShapeNode!
@@ -23,7 +25,7 @@ class GameScene: SKScene {
         super.init(size: size)
         createTarget()
         createArrowWithIndex(0)
-        createScoreLabel(0)
+        createScoreLabel(score)
     }
     
     required init?(coder aDecoder: NSCoder) {

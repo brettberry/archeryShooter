@@ -60,10 +60,11 @@ class GameViewController: UIViewController {
             let respawnDelay = SKAction.waitForDuration(1.0)
             let respawn = SKAction.runBlock() {
                 
-                print(self.gameScene.arrowhead.physicsBody?.allContactedBodies())
+                let hits = self.gameScene.arrowhead.physicsBody!.allContactedBodies()
+                print(hits.contains(self.gameScene.childNodeWithName("X")!.physicsBody!))
+                self.scoreArrow(hits)
                 self.currrentArrowIndex += 1
                 self.gameScene.createArrowWithIndex(self.currrentArrowIndex)
-
             }
             
             let reload = SKAction.sequence([respawnDelay, respawn])
@@ -81,6 +82,28 @@ class GameViewController: UIViewController {
         let arrow = gameScene.childNodeWithName("arrow\(currrentArrowIndex)")
         arrow?.position = CGPointMake(translation.x, -translation.y)
         currentPower = power
+    }
+    
+    func scoreArrow(hits: [SKPhysicsBody]) {
+        if hits.contains(self.gameScene.childNodeWithName("X")!.physicsBody!) || hits.contains(self.gameScene.childNodeWithName("Ten")!.physicsBody!) {
+            gameScene.score += 10
+            gameScene.scoreLabel.text = "\(gameScene.score)"
+        } else if hits.contains(self.gameScene.childNodeWithName("Nine")!.physicsBody!) {
+            gameScene.score += 9
+            gameScene.scoreLabel.text = "\(gameScene.score)"
+        } else if hits.contains(self.gameScene.childNodeWithName("Eight")!.physicsBody!) {
+            gameScene.score += 8
+            gameScene.scoreLabel.text = "\(gameScene.score)"
+        } else if hits.contains(self.gameScene.childNodeWithName("Seven")!.physicsBody!) {
+            gameScene.score += 7
+            gameScene.scoreLabel.text = "\(gameScene.score)"
+        } else if hits.contains(self.gameScene.childNodeWithName("Six")!.physicsBody!) {
+            gameScene.score += 6
+            gameScene.scoreLabel.text = "\(gameScene.score)"
+        } else if hits.contains(self.gameScene.childNodeWithName("Five")!.physicsBody!) {
+            gameScene.score += 5
+            gameScene.scoreLabel.text = "\(gameScene.score)"
+        }
     }
 }
 
