@@ -10,22 +10,24 @@ import SpriteKit
 
 class GameScene: SKScene {
     
-    var scoreLabel: SKLabelNode!
     var score: Int = 0
+    var scoreLabel: SKLabelNode!
+    var xCount: Int = 0
+    var xCountLabel = SKLabelNode()
     
-    var targetHit: SKPhysicsJointFixed!
     var fiveRing: SKShapeNode!
+    var fiveRingSize: CGSize!
+
     var arrow: SKShapeNode!
     var arrowRect: CGRect!
-    var fiveRingSize: CGSize!
-    var sixRing: SKShapeNode!
     var arrowhead: SKShapeNode!
+    var targetHit: SKPhysicsJointFixed!
     
     override init(size: CGSize) {
         super.init(size: size)
         createTarget()
         createArrowWithIndex(0)
-        createScoreLabel(score)
+        createScoreLabel(score, xCount: xCount)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -35,7 +37,7 @@ class GameScene: SKScene {
     private func createTarget() {
         
         let target = size.width / 3
-        let targetVertOffset = size.height / 4
+        let targetVertOffset = size.height / 5
         
         fiveRingSize = CGSizeMake(target + 50, target + 50)
         let fiveRingPoint = CGPointMake((size.width - fiveRingSize.width) / 2, (size.height - fiveRingSize.height) / 2 + targetVertOffset)
@@ -54,14 +56,13 @@ class GameScene: SKScene {
         fiveBody.collisionBitMask = PhysicsType.none
         fiveBody.contactTestBitMask = PhysicsType.arrow
         fiveBody.dynamic = false
-//        fiveBody.usesPreciseCollisionDetection = true
         fiveRing.physicsBody = fiveBody
         
         let sixRingSize = CGSizeMake(target + 25, target + 25)
         let sixRingPoint = CGPointMake((size.width - sixRingSize.width) / 2, (size.height - sixRingSize.height) / 2 + targetVertOffset)
         let sixRingRect = CGRectMake(sixRingPoint.x, sixRingPoint.y, sixRingSize.width, sixRingSize.height)
         let sixRingPath = CGPathCreateWithEllipseInRect(sixRingRect, nil)
-        sixRing = SKShapeNode(path: sixRingPath)
+        let sixRing = SKShapeNode(path: sixRingPath)
         sixRing.fillColor = Colors.blue
         sixRing.strokeColor = Colors.blue
         sixRing.name = "Six"
@@ -73,7 +74,6 @@ class GameScene: SKScene {
         sixBody.categoryBitMask = PhysicsType.sixRing
         sixBody.collisionBitMask = PhysicsType.none
         sixBody.contactTestBitMask = PhysicsType.arrow
-        sixBody.usesPreciseCollisionDetection = true
         sixRing.physicsBody = sixBody
         
         let sevenRingSize = CGSizeMake(target, target)
@@ -92,7 +92,6 @@ class GameScene: SKScene {
         sevenBody.categoryBitMask = PhysicsType.sevenRing
         sevenBody.collisionBitMask = PhysicsType.none
         sevenBody.contactTestBitMask = PhysicsType.arrow
-        sevenBody.usesPreciseCollisionDetection = true
         sevenRing.physicsBody = sevenBody
     
         let eightRingSize = CGSizeMake(target - 25, target - 25)
@@ -111,7 +110,6 @@ class GameScene: SKScene {
         eightBody.categoryBitMask = PhysicsType.eightRing
         eightBody.collisionBitMask = PhysicsType.none
         eightBody.contactTestBitMask = PhysicsType.arrow
-        eightBody.usesPreciseCollisionDetection = true
         eightRing.physicsBody = eightBody
         
         let nineRingSize = CGSizeMake(target - 50, target - 50)
@@ -130,7 +128,6 @@ class GameScene: SKScene {
         nineBody.categoryBitMask = PhysicsType.nineRing
         nineBody.collisionBitMask = PhysicsType.none
         nineBody.contactTestBitMask = PhysicsType.arrow
-        nineBody.usesPreciseCollisionDetection = true
         nineRing.physicsBody = nineBody
         
         let tenRingSize = CGSizeMake(target - 75, target - 75)
@@ -149,7 +146,6 @@ class GameScene: SKScene {
         tenBody.categoryBitMask = PhysicsType.tenRing
         tenBody.collisionBitMask = PhysicsType.none
         tenBody.contactTestBitMask = PhysicsType.arrow
-        tenBody.usesPreciseCollisionDetection = true
         tenRing.physicsBody = tenBody
         
         let xRingSize = CGSizeMake(target - 100, target - 100)
@@ -168,7 +164,6 @@ class GameScene: SKScene {
         xBody.categoryBitMask = PhysicsType.xRing
         xBody.collisionBitMask = PhysicsType.none
         xBody.contactTestBitMask = PhysicsType.arrow
-        xBody.usesPreciseCollisionDetection = true
         xRing.physicsBody = xBody
         
         let xLabel = SKLabelNode(text: "x")
@@ -199,7 +194,6 @@ class GameScene: SKScene {
         arrowBody.categoryBitMask = PhysicsType.arrow
         arrowBody.contactTestBitMask = PhysicsType.target
         arrowBody.collisionBitMask = PhysicsType.none
-//        arrowBody.usesPreciseCollisionDetection = true
         arrow.physicsBody = arrowBody
         
         let fletchSize = CGSizeMake(arrowSize.width * 2, arrowSize.height / 4)
@@ -244,13 +238,20 @@ class GameScene: SKScene {
         arrow.runAction(fadeIn)
     }
     
-    func createScoreLabel(score: Int) {
+    func createScoreLabel(score: Int, xCount: Int) {
         scoreLabel = SKLabelNode()
         scoreLabel.text = "\(score)"
         scoreLabel.fontSize = UIFont.systemFontSize() * 4
         scoreLabel.fontColor = UIColor.lightGrayColor()
-        scoreLabel.position = CGPointMake(size.width / 2, size.height * (10/11))
+        scoreLabel.position = CGPointMake(size.width / 2, size.height * (9/10))
         addChild(scoreLabel)
+        
+        xCountLabel.text = "\(xCount) x"
+        xCountLabel.fontSize = UIFont.systemFontSize() * 2
+        xCountLabel.position = CGPointMake(size.width / 2, scoreLabel.position.y - xCountLabel.fontSize)
+        xCountLabel.fontColor = UIColor.lightGrayColor()
+        xCountLabel.alpha = 0.6
+        addChild(xCountLabel)
     }
     
     func joinArrowToTarget(physicsBodyA: SKPhysicsBody, physicsBodyB: SKPhysicsBody) {
@@ -260,11 +261,3 @@ class GameScene: SKScene {
 }
 
 
-struct Colors {
-    static let blue = UIColor(red: 105/255, green: 127/255, blue: 1, alpha: 1)
-    static let red = UIColor(red: 1, green: 97/255, blue: 76/255, alpha: 1)
-    static let yellow = UIColor(red: 1, green: 246/255, blue: 116/255, alpha: 1)
-    static let darkBlue = UIColor(red: 80/255, green: 97/255, blue: 194/255, alpha: 1)
-    static let darkRed = UIColor(red: 245/255, green: 46/255, blue: 11/255, alpha: 1)
-    static let darkYellow = UIColor(red: 247/255, green: 206/255, blue: 66/255, alpha: 1)
-}

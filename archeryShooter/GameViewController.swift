@@ -21,10 +21,9 @@ class GameViewController: UIViewController {
         let skView = view as? SKView
         gameScene = GameScene(size: view.bounds.size)
         skView?.presentScene(gameScene)
-        gameScene.physicsWorld.contactDelegate = self
+//        gameScene.physicsWorld.contactDelegate = self
         gameScene.delegate = self
         configurePanGesture()
-//        skView?.showsPhysics = true 
     }
 
     override func prefersStatusBarHidden() -> Bool {
@@ -38,30 +37,22 @@ class GameViewController: UIViewController {
     
     @objc func handlePanGesture(recognizer: UIPanGestureRecognizer) {
         
-        if recognizer.state == .Began {
-        
-        }
-        
         if recognizer.state == .Changed {
             let translation = recognizer.translationInView(recognizer.view)
             aimArrow(translation)
         }
         
         if recognizer.state == .Ended {
-            
             let force: CGFloat = 1.0
             let gestureVelocity = recognizer.velocityInView(recognizer.view)
-            let (xVel, yVel) = (gestureVelocity.x / 6, gestureVelocity.y / 6)
-            let impulse = CGVectorMake(xVel * force, yVel * force)
-            
+            let xVel = gestureVelocity.x / 6
+            let impulse = CGVectorMake(xVel * force, currentPower)
             let arrow = gameScene.childNodeWithName("arrow\(currrentArrowIndex)")
-            arrow?.physicsBody?.applyImpulse(CGVectorMake(impulse.dx, currentPower))
+            arrow?.physicsBody?.applyImpulse(impulse)
             
             let respawnDelay = SKAction.waitForDuration(1.0)
             let respawn = SKAction.runBlock() {
-                
                 let hits = self.gameScene.arrowhead.physicsBody!.allContactedBodies()
-                print(hits.contains(self.gameScene.childNodeWithName("X")!.physicsBody!))
                 self.scoreArrow(hits)
                 self.currrentArrowIndex += 1
                 self.gameScene.createArrowWithIndex(self.currrentArrowIndex)
@@ -85,7 +76,12 @@ class GameViewController: UIViewController {
     }
     
     func scoreArrow(hits: [SKPhysicsBody]) {
-        if hits.contains(self.gameScene.childNodeWithName("X")!.physicsBody!) || hits.contains(self.gameScene.childNodeWithName("Ten")!.physicsBody!) {
+        if hits.contains(self.gameScene.childNodeWithName("X")!.physicsBody!) {
+            gameScene.score += 10
+            gameScene.scoreLabel.text = "\(gameScene.score)"
+            gameScene.xCount += 1
+            gameScene.xCountLabel.text = "\(gameScene.xCount) x"
+        } else if hits.contains(self.gameScene.childNodeWithName("Ten")!.physicsBody!) {
             gameScene.score += 10
             gameScene.scoreLabel.text = "\(gameScene.score)"
         } else if hits.contains(self.gameScene.childNodeWithName("Nine")!.physicsBody!) {
@@ -126,11 +122,11 @@ extension GameViewController: SKSceneDelegate {
 }
 
 
-extension GameViewController: SKPhysicsContactDelegate {
-    
-    func didEndContact(contact: SKPhysicsContact) {
-        
-        
-    }
-}
+//extension GameViewController: SKPhysicsContactDelegate {
+//    
+//    func didEndContact(contact: SKPhysicsContact) {
+//        
+//        
+//    }
+//}
 

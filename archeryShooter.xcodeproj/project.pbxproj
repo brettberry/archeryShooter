@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		12F4D4D51D99CE7A00984FB5 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F4D4D41D99CE7A00984FB5 /* Colors.swift */; };
 		12FE393A1D8E174C00EBFA8D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FE39391D8E174C00EBFA8D /* AppDelegate.swift */; };
 		12FE393E1D8E174C00EBFA8D /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FE393D1D8E174C00EBFA8D /* GameScene.swift */; };
 		12FE39401D8E174C00EBFA8D /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FE393F1D8E174C00EBFA8D /* GameViewController.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		12F4D4D41D99CE7A00984FB5 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		12FE39361D8E174C00EBFA8D /* archeryShooter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = archeryShooter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12FE39391D8E174C00EBFA8D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		12FE393D1D8E174C00EBFA8D /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				12FE393D1D8E174C00EBFA8D /* GameScene.swift */,
 				12FE393F1D8E174C00EBFA8D /* GameViewController.swift */,
 				12FE396B1D90752A00EBFA8D /* PhysicsType.swift */,
+				12F4D4D41D99CE7A00984FB5 /* Colors.swift */,
 				12FE39411D8E174C00EBFA8D /* Main.storyboard */,
 				12FE39441D8E174C00EBFA8D /* Assets.xcassets */,
 				12FE39461D8E174C00EBFA8D /* LaunchScreen.storyboard */,
@@ -264,6 +267,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				12FE393E1D8E174C00EBFA8D /* GameScene.swift in Sources */,
+				12F4D4D51D99CE7A00984FB5 /* Colors.swift in Sources */,
 				12FE396C1D90752A00EBFA8D /* PhysicsType.swift in Sources */,
 				12FE39401D8E174C00EBFA8D /* GameViewController.swift in Sources */,
 				12FE393A1D8E174C00EBFA8D /* AppDelegate.swift in Sources */,
