@@ -16,7 +16,14 @@ class GameScene: SKScene {
     var xCountLabel = SKLabelNode()
     
     var fiveRing: SKShapeNode!
-    var fiveRingSize: CGSize!
+    var sixRing: SKShapeNode!
+    var sevenRing: SKShapeNode!
+    var eightRing: SKShapeNode!
+    var nineRing: SKShapeNode!
+    var tenRing: SKShapeNode!
+    var xRing: SKShapeNode!
+    var xLabel: SKLabelNode!
+    var targetSize: CGSize!
 
     var arrow: SKShapeNode!
     var arrowRect: CGRect!
@@ -32,15 +39,13 @@ class GameScene: SKScene {
    }
     
     func setupGameScene() {
-        
         if gameScene == nil {
             gameScene = SKScene(size: frame.size)
         }
-        
         let transition = SKTransition.fadeWithColor(UIColor.darkGrayColor(), duration: 1.0)
         view?.presentScene(gameScene, transition: transition)
-        
-        createTarget()
+        configureTargetNodes()
+        addChildrenNodes()
         gameDelegate.gameShouldStart()
         createScoreLabel(score, withXCount: xCount)
     }
@@ -49,22 +54,21 @@ class GameScene: SKScene {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func createTarget() {
+    private func configureTargetNodes() {
         let target = size.width / 3
         let targetVertOffset = size.height / 6
+        targetSize = CGSizeMake(target + 50, target + 50)
         
-        fiveRingSize = CGSizeMake(target + 50, target + 50)
-        let fiveRingPoint = CGPointMake((size.width - fiveRingSize.width) / 2, (size.height - fiveRingSize.height) / 2 + targetVertOffset)
-        let fiveRingRect = CGRectMake(fiveRingPoint.x, fiveRingPoint.y, fiveRingSize.width, fiveRingSize.height)
+        let fiveRingPoint = CGPointMake((size.width - targetSize.width) / 2, (size.height - targetSize.height) / 2 + targetVertOffset)
+        let fiveRingRect = CGRectMake(fiveRingPoint.x, fiveRingPoint.y, targetSize.width, targetSize.height)
         let fiveRingPath = CGPathCreateWithEllipseInRect(fiveRingRect, nil)
         fiveRing = SKShapeNode(path: fiveRingPath)
         fiveRing.fillColor = Colors.darkBlue
         fiveRing.strokeColor = Colors.darkBlue
         fiveRing.name = "Five"
-        addChild(fiveRing)
         
-        let fiveCenter = CGPointMake(fiveRingPoint.x + fiveRingSize.width / 2, fiveRingPoint.y + fiveRingSize.height / 2)
-        let fiveBody = SKPhysicsBody(circleOfRadius: fiveRingSize.width / 2, center: fiveCenter)
+        let fiveCenter = CGPointMake(fiveRingPoint.x + targetSize.width / 2, fiveRingPoint.y + targetSize.height / 2)
+        let fiveBody = SKPhysicsBody(circleOfRadius: targetSize.width / 2, center: fiveCenter)
         fiveBody.affectedByGravity = false
         fiveBody.categoryBitMask = PhysicsType.target
         fiveBody.collisionBitMask = PhysicsType.none
@@ -76,11 +80,10 @@ class GameScene: SKScene {
         let sixRingPoint = CGPointMake((size.width - sixRingSize.width) / 2, (size.height - sixRingSize.height) / 2 + targetVertOffset)
         let sixRingRect = CGRectMake(sixRingPoint.x, sixRingPoint.y, sixRingSize.width, sixRingSize.height)
         let sixRingPath = CGPathCreateWithEllipseInRect(sixRingRect, nil)
-        let sixRing = SKShapeNode(path: sixRingPath)
+        sixRing = SKShapeNode(path: sixRingPath)
         sixRing.fillColor = Colors.blue
         sixRing.strokeColor = Colors.blue
         sixRing.name = "Six"
-        addChild(sixRing)
         
         let sixCenter = CGPointMake(sixRingPoint.x + sixRingSize.width / 2, sixRingPoint.y + sixRingSize.height / 2)
         let sixBody = SKPhysicsBody(circleOfRadius: sixRingSize.width / 2, center: sixCenter)
@@ -94,11 +97,10 @@ class GameScene: SKScene {
         let sevenRingPoint = CGPointMake((size.width - sevenRingSize.width) / 2, (size.height - sevenRingSize.height) / 2 + targetVertOffset)
         let sevenRingRect = CGRectMake(sevenRingPoint.x, sevenRingPoint.y, sevenRingSize.width, sevenRingSize.height)
         let sevenRingPath = CGPathCreateWithEllipseInRect(sevenRingRect, nil)
-        let sevenRing = SKShapeNode(path: sevenRingPath)
+        sevenRing = SKShapeNode(path: sevenRingPath)
         sevenRing.fillColor = Colors.darkRed
         sevenRing.strokeColor = Colors.darkRed
         sevenRing.name = "Seven"
-        addChild(sevenRing)
         
         let sevenCenter = CGPointMake(sevenRingPoint.x + sevenRingSize.width / 2, sevenRingPoint.y + sevenRingSize.height / 2)
         let sevenBody = SKPhysicsBody(circleOfRadius: sevenRingSize.width / 2, center: sevenCenter)
@@ -112,11 +114,10 @@ class GameScene: SKScene {
         let eightRingPoint = CGPointMake((size.width - eightRingSize.width) / 2, (size.height - eightRingSize.height) / 2 + targetVertOffset)
         let eightRingRect = CGRectMake(eightRingPoint.x, eightRingPoint.y, eightRingSize.width, eightRingSize.height)
         let eightRingPath = CGPathCreateWithEllipseInRect(eightRingRect, nil)
-        let eightRing = SKShapeNode(path: eightRingPath)
+        eightRing = SKShapeNode(path: eightRingPath)
         eightRing.fillColor = Colors.red
         eightRing.strokeColor = Colors.red
         eightRing.name = "Eight"
-        addChild(eightRing)
         
         let eightCenter = CGPointMake(eightRingPoint.x + eightRingSize.width / 2, eightRingPoint.y + eightRingSize.height / 2)
         let eightBody = SKPhysicsBody(circleOfRadius: eightRingSize.width / 2, center: eightCenter)
@@ -130,11 +131,10 @@ class GameScene: SKScene {
         let nineRingPoint = CGPointMake((size.width - nineRingSize.width) / 2, (size.height - nineRingSize.height) / 2 + targetVertOffset)
         let nineRingRect = CGRectMake(nineRingPoint.x, nineRingPoint.y, nineRingSize.width, nineRingSize.height)
         let nineRingPath = CGPathCreateWithEllipseInRect(nineRingRect, nil)
-        let nineRing = SKShapeNode(path: nineRingPath)
+        nineRing = SKShapeNode(path: nineRingPath)
         nineRing.fillColor = Colors.darkYellow
         nineRing.strokeColor = Colors.darkYellow
         nineRing.name = "Nine"
-        addChild(nineRing)
         
         let nineCenter = CGPointMake(nineRingPoint.x + nineRingSize.width / 2, nineRingPoint.y + nineRingSize.height / 2)
         let nineBody = SKPhysicsBody(circleOfRadius: nineRingSize.width / 2, center: nineCenter)
@@ -148,11 +148,10 @@ class GameScene: SKScene {
         let tenRingPoint = CGPointMake((size.width - tenRingSize.width) / 2, (size.height - tenRingSize.height) / 2 + targetVertOffset)
         let tenRingRect = CGRectMake(tenRingPoint.x, tenRingPoint.y, tenRingSize.width, tenRingSize.height)
         let tenRingPath = CGPathCreateWithEllipseInRect(tenRingRect, nil)
-        let tenRing = SKShapeNode(path: tenRingPath)
+        tenRing = SKShapeNode(path: tenRingPath)
         tenRing.fillColor = Colors.yellow
         tenRing.strokeColor = Colors.yellow
         tenRing.name = "Ten"
-        addChild(tenRing)
         
         let tenCenter = CGPointMake(tenRingPoint.x + tenRingSize.width / 2, tenRingPoint.y + tenRingSize.height / 2)
         let tenBody = SKPhysicsBody(circleOfRadius: tenRingSize.width / 2, center: tenCenter)
@@ -166,11 +165,10 @@ class GameScene: SKScene {
         let xRingPoint = CGPointMake((size.width - xRingSize.width) / 2, (size.height - xRingSize.height) / 2 + targetVertOffset)
         let xRingRect = CGRectMake(xRingPoint.x, xRingPoint.y, xRingSize.width, xRingSize.height)
         let xRingPath = CGPathCreateWithEllipseInRect(xRingRect, nil)
-        let xRing = SKShapeNode(path: xRingPath)
+        xRing = SKShapeNode(path: xRingPath)
         xRing.fillColor = Colors.yellow
         xRing.strokeColor = UIColor.clearColor()
         xRing.name = "X"
-        addChild(xRing)
         
         let xCenter = CGPointMake(xRingPoint.x + xRingSize.width / 2, xRingPoint.y + xRingSize.height / 2)
         let xBody = SKPhysicsBody(circleOfRadius: xRingSize.width / 2, center: xCenter)
@@ -180,18 +178,43 @@ class GameScene: SKScene {
         xBody.contactTestBitMask = PhysicsType.arrow
         xRing.physicsBody = xBody
         
-        let xLabel = SKLabelNode(text: "x")
+        xLabel = SKLabelNode(text: "x")
         xLabel.fontColor = UIColor.darkGrayColor()
         xLabel.verticalAlignmentMode = .Center
         xLabel.horizontalAlignmentMode = .Center
         xLabel.fontSize = UIFont.systemFontSize() * 1.5
         xLabel.position = CGPointMake(xRingPoint.x + xRingSize.width / 2, xRingPoint.y + xRingSize.height / 2)
+    }
+    
+    func addChildrenNodes() {
+        addChild(fiveRing)
+        addChild(sixRing)
+        addChild(sevenRing)
+        addChild(eightRing)
+        addChild(nineRing)
+        addChild(tenRing)
+        addChild(xRing)
         xRing.addChild(xLabel)
+    }
+    
+    func moveTarget() {
+        let delay = SKAction.waitForDuration(5.0)
+        let moveRight = SKAction.moveToX(100, duration: 5.0)
+        let moveLeft = SKAction.moveToX(-100, duration: 5.0)
+        let moveCenter = SKAction.moveToX(0, duration: 5.0)
+        let move = SKAction.sequence([delay, moveRight, moveLeft, moveRight, moveCenter])
+        fiveRing.runAction(move)
+        sixRing.runAction(move)
+        sevenRing.runAction(move)
+        eightRing.runAction(move)
+        nineRing.runAction(move)
+        tenRing.runAction(move)
+        xRing.runAction(move)
     }
     
     func createArrowWithIndex(index: Int) {
         let arrowSize = CGSizeMake(5, 150)
-        let arrowPoint = CGPointMake((size.width - arrowSize.width) / 2, size.height / 5 )
+        let arrowPoint = CGPointMake((size.width - arrowSize.width) / 2, size.height / 4 )
         arrowRect = CGRectMake(arrowPoint.x, arrowPoint.y, arrowSize.width, arrowSize.height)
         let arrowPath = CGPathCreateWithRect(arrowRect, nil)
         arrow = SKShapeNode(path: arrowPath)
@@ -260,13 +283,13 @@ class GameScene: SKScene {
         
         xCountLabel.text = "\(xCount) x"
         xCountLabel.fontSize = UIFont.systemFontSize() * 2
-        xCountLabel.position = CGPointMake(size.width / 2, scoreLabel.position.y - xCountLabel.fontSize)
+        xCountLabel.position = CGPointMake(size.width / 2, scoreLabel.position.y - xCountLabel.fontSize - 10)
         xCountLabel.fontColor = UIColor.lightGrayColor()
         xCountLabel.alpha = 0.75
         addChild(xCountLabel)
     }
     
-    func joinArrowToTarget(physicsBodyA: SKPhysicsBody, physicsBodyB: SKPhysicsBody) {
+    func joinToTarget(physicsBodyA: SKPhysicsBody, physicsBodyB: SKPhysicsBody) {
         targetHit = SKPhysicsJointFixed.jointWithBodyA(physicsBodyA, bodyB: physicsBodyB, anchor: CGPointZero)
         physicsWorld.addJoint(targetHit)
     }

@@ -23,7 +23,6 @@ class GameOverScene: SKScene {
             gameScene.delegate = gameViewController
             gameView?.presentScene(gameScene)
         }
-        
         let reload = SKAction.sequence([delay, replay])
         runAction(reload)
     }
@@ -32,11 +31,10 @@ class GameOverScene: SKScene {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     private func addGameOverLabels(score: Int, xCount: Int) {
         let gameOverLabel = SKLabelNode(text: "Game Over")
         gameOverLabel.position = CGPointMake(size.width / 2, size.height * 2/3)
-        gameOverLabel.fontSize = UIFont.systemFontSize() * 5
+        gameOverLabel.fontSize = UIFont.systemFontSize() * 4
         gameOverLabel.fontColor = UIColor.lightGrayColor()
         addChild(gameOverLabel)
         
@@ -48,7 +46,7 @@ class GameOverScene: SKScene {
         addChild(totalScoreLabel)
         
         let totalXCountLabel = SKLabelNode()
-        totalXCountLabel.text = "\(xCount) x's"
+        totalXCountLabel.text = "\(xCount) x"
         totalXCountLabel.position = CGPointMake(frame.width / 2, frame.height / 2 - 75)
         totalXCountLabel.fontSize = UIFont.systemFontSize() * 3
         totalXCountLabel.fontColor = UIColor.lightGrayColor()

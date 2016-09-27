@@ -17,13 +17,13 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         let skView = view as? SKView
         gameScene = GameScene(size: view.bounds.size, gameDelegate: self)
         gameScene.setupGameScene()
         skView?.presentScene(gameScene)
         gameScene.delegate = self
         configurePanGesture()
+        gameScene.moveTarget()
     }
 
     override func prefersStatusBarHidden() -> Bool {
@@ -35,8 +35,8 @@ class GameViewController: UIViewController {
         view.addGestureRecognizer(pan)
     }
     
-    @objc func handlePanGesture(recognizer: UIPanGestureRecognizer) {
-        
+    @objc private func handlePanGesture(recognizer: UIPanGestureRecognizer) {
+    
         if recognizer.state == .Changed {
             let translation = recognizer.translationInView(recognizer.view)
             aimArrow(translation)
@@ -60,25 +60,23 @@ class GameViewController: UIViewController {
                 }
                 self.gameScene.createArrowWithIndex(self.currrentArrowIndex)
             }
-            
             let reload = SKAction.sequence([respawnDelay, respawn])
             arrow?.runAction(reload)
         }
     }
     
-    func aimArrow(translation: CGPoint) {
+    private func aimArrow(translation: CGPoint) {
         let changeInPower = translation.y
         let powerScale: CGFloat = 3.0
         var power = changeInPower / powerScale
         power = max(0, power)
         power = min(power, 100)
-        
         let arrow = gameScene.childNodeWithName("arrow\(currrentArrowIndex)")
         arrow?.position = CGPointMake(translation.x, -translation.y)
         currentPower = power
     }
     
-    func scoreArrow(hits: [SKPhysicsBody]) {
+    private func scoreArrow(hits: [SKPhysicsBody]) {
         if hits.contains(self.gameScene.childNodeWithName("X")!.physicsBody!) {
             gameScene.score += 10
             gameScene.scoreLabel.text = "\(gameScene.score)"
@@ -116,13 +114,13 @@ class GameViewController: UIViewController {
 extension GameViewController: SKSceneDelegate {
     
     func update(currentTime: NSTimeInterval, forScene scene: SKScene) {
-        
         let arrowNode = scene.childNodeWithName("arrow\(currrentArrowIndex)")
-        let lowestPoint = ((gameScene.size.height - gameScene.fiveRingSize.height) / 2) + (gameScene.size.height / 5) - 250
+        let arrowHeadNode = scene.childNodeWithName("arrowhead\(currrentArrowIndex)")
+        let lowestPoint = ((gameScene.size.height - gameScene.targetSize.height) / 2) + (gameScene.size.height / 5) - 250
         
         if arrowNode?.position.y > lowestPoint {
-            gameScene.joinArrowToTarget((arrowNode?.physicsBody)!, physicsBodyB: (gameScene.fiveRing?.physicsBody)!)
-            
+            gameScene.joinToTarget((arrowNode?.physicsBody)!, physicsBodyB: (gameScene.fiveRing?.physicsBody)!)
+            gameScene.joinToTarget((arrowHeadNode?.physicsBody)!, physicsBodyB: (gameScene.fiveRing?.physicsBody)!)
             let delay = SKAction.waitForDuration(0.5)
             let fade = SKAction.fadeOutWithDuration(0.1)
             let arrowExit = SKAction.sequence([delay, fade])
@@ -132,7 +130,6 @@ extension GameViewController: SKSceneDelegate {
 }
 
 extension GameViewController: GameDelegate {
-
     // stateful things go here
     func gameShouldStart() {
         currrentArrowIndex = 0
