@@ -23,7 +23,9 @@ class GameViewController: UIViewController {
         skView?.presentScene(gameScene)
         gameScene.delegate = self
         configurePanGesture()
-        gameScene.moveTarget()
+//        gameScene.moveTargetWithDuration(5.0)
+//        gameScene.moveTargetVerticalWithDuration(2.0)
+        gameScene.moveCrissCrossWithDuration(2.0)
     }
 
     override func prefersStatusBarHidden() -> Bool {
