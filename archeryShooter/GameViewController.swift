@@ -17,15 +17,19 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+
         let skView = view as? SKView
         gameScene = GameScene(size: view.bounds.size, gameDelegate: self)
         gameScene.setupGameScene()
         skView?.presentScene(gameScene)
+        skView?.showsPhysics = true 
+
         gameScene.delegate = self
         configurePanGesture()
 //        gameScene.moveTargetWithDuration(5.0)
 //        gameScene.moveTargetVerticalWithDuration(2.0)
-        gameScene.moveCrissCrossWithDuration(2.0)
+//        gameScene.moveCrissCrossWithDuration(2.0)
     }
 
     override func prefersStatusBarHidden() -> Bool {
@@ -55,6 +59,7 @@ class GameViewController: UIViewController {
             let respawnDelay = SKAction.waitForDuration(1.0)
             let respawn = SKAction.runBlock() {
                 let hits = self.gameScene.arrowhead.physicsBody!.allContactedBodies()
+//                print(hits)
                 self.scoreArrow(hits)
                 self.currrentArrowIndex += 1
                 if self.currrentArrowIndex == 10 {
@@ -132,14 +137,13 @@ extension GameViewController: SKSceneDelegate {
 }
 
 extension GameViewController: GameDelegate {
-    // stateful things go here
+    
     func gameShouldStart() {
         currrentArrowIndex = 0
         gameScene.score = 0
         gameScene.xCount = 0
         gameScene.createArrowWithIndex(currrentArrowIndex)
     }
-
 }
 
 
