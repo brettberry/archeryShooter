@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		12534AA81D9DDC3100A52159 /* LevelTwoOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12534AA71D9DDC3100A52159 /* LevelTwoOverScene.swift */; };
+		12534AAA1D9DDD7600A52159 /* LevelThreeOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12534AA91D9DDD7600A52159 /* LevelThreeOverScene.swift */; };
+		12534AAC1D9DE03F00A52159 /* LevelFourOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12534AAB1D9DE03F00A52159 /* LevelFourOverScene.swift */; };
 		12F4D4D51D99CE7A00984FB5 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F4D4D41D99CE7A00984FB5 /* Colors.swift */; };
-		12F4D4D71D99DBF400984FB5 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F4D4D61D99DBF400984FB5 /* GameOverScene.swift */; };
+		12F4D4D71D99DBF400984FB5 /* LevelOneOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F4D4D61D99DBF400984FB5 /* LevelOneOverScene.swift */; };
 		12F4D4D91D99E01F00984FB5 /* GameDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F4D4D81D99E01F00984FB5 /* GameDelegateProtocol.swift */; };
 		12FE393A1D8E174C00EBFA8D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FE39391D8E174C00EBFA8D /* AppDelegate.swift */; };
 		12FE393E1D8E174C00EBFA8D /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FE393D1D8E174C00EBFA8D /* GameScene.swift */; };
@@ -39,8 +42,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		12534AA71D9DDC3100A52159 /* LevelTwoOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelTwoOverScene.swift; sourceTree = "<group>"; };
+		12534AA91D9DDD7600A52159 /* LevelThreeOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelThreeOverScene.swift; sourceTree = "<group>"; };
+		12534AAB1D9DE03F00A52159 /* LevelFourOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelFourOverScene.swift; sourceTree = "<group>"; };
 		12F4D4D41D99CE7A00984FB5 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
-		12F4D4D61D99DBF400984FB5 /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
+		12F4D4D61D99DBF400984FB5 /* LevelOneOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelOneOverScene.swift; sourceTree = "<group>"; };
 		12F4D4D81D99E01F00984FB5 /* GameDelegateProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameDelegateProtocol.swift; sourceTree = "<group>"; };
 		12FE39361D8E174C00EBFA8D /* archeryShooter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = archeryShooter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12FE39391D8E174C00EBFA8D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -110,7 +116,10 @@
 				12FE39391D8E174C00EBFA8D /* AppDelegate.swift */,
 				12FE393D1D8E174C00EBFA8D /* GameScene.swift */,
 				12FE393F1D8E174C00EBFA8D /* GameViewController.swift */,
-				12F4D4D61D99DBF400984FB5 /* GameOverScene.swift */,
+				12F4D4D61D99DBF400984FB5 /* LevelOneOverScene.swift */,
+				12534AA71D9DDC3100A52159 /* LevelTwoOverScene.swift */,
+				12534AA91D9DDD7600A52159 /* LevelThreeOverScene.swift */,
+				12534AAB1D9DE03F00A52159 /* LevelFourOverScene.swift */,
 				12FE396B1D90752A00EBFA8D /* PhysicsType.swift */,
 				12F4D4D41D99CE7A00984FB5 /* Colors.swift */,
 				12F4D4D81D99E01F00984FB5 /* GameDelegateProtocol.swift */,
@@ -277,8 +286,11 @@
 				12F4D4D51D99CE7A00984FB5 /* Colors.swift in Sources */,
 				12FE396C1D90752A00EBFA8D /* PhysicsType.swift in Sources */,
 				12FE39401D8E174C00EBFA8D /* GameViewController.swift in Sources */,
-				12F4D4D71D99DBF400984FB5 /* GameOverScene.swift in Sources */,
+				12F4D4D71D99DBF400984FB5 /* LevelOneOverScene.swift in Sources */,
+				12534AA81D9DDC3100A52159 /* LevelTwoOverScene.swift in Sources */,
+				12534AAA1D9DDD7600A52159 /* LevelThreeOverScene.swift in Sources */,
 				12FE393A1D8E174C00EBFA8D /* AppDelegate.swift in Sources */,
+				12534AAC1D9DE03F00A52159 /* LevelFourOverScene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

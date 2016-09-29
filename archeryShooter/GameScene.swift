@@ -59,24 +59,24 @@ class GameScene: SKScene {
     }
     
     func createRings() {
-        fiveRing = configureRingNode("Five", color: Colors.darkBlue, offset: 0, category: PhysicsType.fiveRing, dynamic: false)
-        sixRing = configureRingNode("Six", color: Colors.blue, offset: 25, category: PhysicsType.sixRing, dynamic: true)
-        sevenRing = configureRingNode("Seven", color: Colors.darkRed, offset: 50, category: PhysicsType.sevenRing, dynamic: true)
-        eightRing = configureRingNode("Eight", color: Colors.red, offset: 75, category: PhysicsType.eightRing, dynamic: true)
-        nineRing = configureRingNode("Nine", color: Colors.darkYellow, offset: 100, category: PhysicsType.nineRing, dynamic: true)
-        tenRing = configureRingNode("Ten", color: Colors.yellow, offset: 125, category: PhysicsType.tenRing, dynamic: true)
-        xRing = configureRingNode("X", color: Colors.yellow, offset: 140, category: PhysicsType.xRing, dynamic: true)
+        fiveRing = configureRingNode("Five", color: Colors.darkBlue, offset: 0, category: PhysicsType.fiveRing, dynamic: false, label: false)
+        sixRing = configureRingNode("Six", color: Colors.blue, offset: 25, category: PhysicsType.sixRing, dynamic: true, label: false)
+        sevenRing = configureRingNode("Seven", color: Colors.darkRed, offset: 50, category: PhysicsType.sevenRing, dynamic: true, label: false)
+        eightRing = configureRingNode("Eight", color: Colors.red, offset: 75, category: PhysicsType.eightRing, dynamic: true, label: false)
+        nineRing = configureRingNode("Nine", color: Colors.darkYellow, offset: 100, category: PhysicsType.nineRing, dynamic: true, label: false)
+        tenRing = configureRingNode("Ten", color: Colors.yellow, offset: 125, category: PhysicsType.tenRing, dynamic: true, label: false)
+        xRing = configureRingNode("X", color: Colors.yellow, offset: 140, category: PhysicsType.xRing, dynamic: true, label: true)
 
-        xLabel = SKLabelNode(text: "x")
-        xLabel.fontColor = UIColor.darkGrayColor()
-        xLabel.verticalAlignmentMode = .Center
-        xLabel.horizontalAlignmentMode = .Center
-        xLabel.fontSize = UIFont.systemFontSize() * 1.5
-//      xLabel.position = CGPointMake(xRingPoint.x + xRingSize.width / 2, xRingPoint.y + xRingSize.height / 2)
-//      xRing.addChild(xLabel)
+        let labelNode = SKLabelNode(text: "X")
+        labelNode.fontColor = UIColor.grayColor()
+        labelNode.verticalAlignmentMode = .Center
+        labelNode.horizontalAlignmentMode = .Center
+        labelNode.fontSize = UIFont.systemFontSize() * 1.5
+        labelNode.position = CGPointMake(size.width / 2, size.height / 2)
+        xRing.addChild(labelNode)
     }
     
-    func configureRingNode(name: String, color: UIColor, offset: CGFloat, category: UInt32, dynamic: Bool) -> SKShapeNode {
+    func configureRingNode(name: String, color: UIColor, offset: CGFloat, category: UInt32, dynamic: Bool, label: Bool) -> SKShapeNode {
         let yOffset = size.height / 6
         let nodeSize = CGSizeMake(targetSize.width - offset, targetSize.height - offset)
         let point = CGPointMake((size.width - nodeSize.width) / 2, (size.height - nodeSize.height) / 2 + yOffset)
@@ -146,7 +146,7 @@ class GameScene: SKScene {
         arrow.addChild(fletch2)
         
         let arrowheadSize = CGSizeMake(arrowSize.width, arrowSize.width)
-        let arrowheadPoint = CGPoint(x: arrowPoint.x, y: arrowPoint.y + arrowSize.height)
+        let arrowheadPoint = CGPoint(x: arrowPoint.x, y: arrowPoint.y + arrowSize.height - arrowheadSize.height / 2)
         let arrowheadRect = CGRectMake(arrowheadPoint.x, arrowheadPoint.y, arrowheadSize.width, arrowheadSize.height)
         let arrowheadPath = CGPathCreateWithEllipseInRect(arrowheadRect, nil)
         arrowhead = SKShapeNode(path: arrowheadPath)

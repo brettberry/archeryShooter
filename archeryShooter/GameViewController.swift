@@ -17,19 +17,13 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
 
         let skView = view as? SKView
         gameScene = GameScene(size: view.bounds.size, gameDelegate: self)
         gameScene.setupGameScene()
         skView?.presentScene(gameScene)
-        skView?.showsPhysics = true 
-
         gameScene.delegate = self
         configurePanGesture()
-//        gameScene.moveTargetWithDuration(5.0)
-//        gameScene.moveTargetVerticalWithDuration(2.0)
-//        gameScene.moveCrissCrossWithDuration(2.0)
     }
 
     override func prefersStatusBarHidden() -> Bool {
@@ -59,12 +53,18 @@ class GameViewController: UIViewController {
             let respawnDelay = SKAction.waitForDuration(1.0)
             let respawn = SKAction.runBlock() {
                 let hits = self.gameScene.arrowhead.physicsBody!.allContactedBodies()
-//                print(hits)
                 self.scoreArrow(hits)
                 self.currrentArrowIndex += 1
                 if self.currrentArrowIndex == 10 {
-                    self.initiateGameOver()
+                    self.completeLevel(1)
+                } else if self.currrentArrowIndex == 20 {
+                    self.completeLevel(2)
+                } else if self.currrentArrowIndex == 30 {
+                    self.completeLevel(3)
+                } else if self.currrentArrowIndex == 40 {
+                    self.completeLevel(4)
                 }
+                
                 self.gameScene.createArrowWithIndex(self.currrentArrowIndex)
             }
             let reload = SKAction.sequence([respawnDelay, respawn])
@@ -110,11 +110,20 @@ class GameViewController: UIViewController {
         }
     }
     
-    private func initiateGameOver() {
+    private func completeLevel(level: Int) {
         let skView = view as? SKView
         let transition = SKTransition.fadeWithColor(UIColor.darkGrayColor(), duration: 1.0)
-        let gameOver = GameOverScene(size: view.frame.size, score: gameScene.score, xCount: gameScene.xCount, gameViewController: self)
-        skView?.presentScene(gameOver, transition: transition)
+        
+        if level == 1 {
+            let gameOver = LevelOneOverScene(size: view.frame.size, score: gameScene.score, xCount: gameScene.xCount, gameViewController: self)
+            skView?.presentScene(gameOver, transition: transition)
+        } else if level == 2 {
+            let gameOver = LevelTwoOverScene(size: view.frame.size, score: gameScene.score, xCount: gameScene.xCount, gameViewController: self)
+            skView?.presentScene(gameOver, transition: transition)
+        } else if level == 3 {
+            let gameOver = LevelThreeOverScene(size: view.frame.size, score: gameScene.score, xCount: gameScene.xCount, gameViewController: self)
+            skView?.presentScene(gameOver, transition: transition)
+        }
     }
 }
 
@@ -139,7 +148,6 @@ extension GameViewController: SKSceneDelegate {
 extension GameViewController: GameDelegate {
     
     func gameShouldStart() {
-        currrentArrowIndex = 0
         gameScene.score = 0
         gameScene.xCount = 0
         gameScene.createArrowWithIndex(currrentArrowIndex)

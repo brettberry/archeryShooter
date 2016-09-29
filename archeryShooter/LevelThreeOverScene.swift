@@ -1,15 +1,15 @@
 //
-//  GameOverScene.swift
+//  LevelThreeOverScene.swift
 //  archeryShooter
 //
-//  Created by Brett Berry on 9/26/16.
+//  Created by Brett Berry on 9/29/16.
 //  Copyright © 2016 Brett Berry. All rights reserved.
 //
 
 import SpriteKit
 
-class GameOverScene: SKScene {
-
+class LevelThreeOverScene: SKScene {
+    
     init(size: CGSize, score: Int, xCount: Int, gameViewController: GameViewController) {
         super.init(size: size)
         addGameOverLabels(score, xCount: xCount)
@@ -22,6 +22,7 @@ class GameOverScene: SKScene {
             gameScene.setupGameScene()
             gameScene.delegate = gameViewController
             gameView?.presentScene(gameScene)
+            gameScene.moveTargetWithDuration(1.25)
         }
         let reload = SKAction.sequence([delay, replay])
         runAction(reload)
@@ -32,7 +33,7 @@ class GameOverScene: SKScene {
     }
     
     private func addGameOverLabels(score: Int, xCount: Int) {
-        let gameOverLabel = SKLabelNode(text: "Game Over")
+        let gameOverLabel = SKLabelNode(text: "Level 3 Over")
         gameOverLabel.position = CGPointMake(size.width / 2, size.height * 2/3)
         gameOverLabel.fontSize = UIFont.systemFontSize() * 4
         gameOverLabel.fontColor = UIColor.lightGrayColor()
