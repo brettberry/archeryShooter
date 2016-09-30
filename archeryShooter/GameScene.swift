@@ -15,6 +15,7 @@ class GameScene: SKScene {
     var scoreLabel = SKLabelNode()
     var xCountLabel = SKLabelNode()
     
+//    var target: SKShapeNode!
     var fiveRing: SKShapeNode!
     var sixRing: SKShapeNode!
     var sevenRing: SKShapeNode!
@@ -50,7 +51,6 @@ class GameScene: SKScene {
         createRings()
         addTargetNodes()
         createScoreLabel(score, withXCount: xCount)
-
         gameDelegate.gameShouldStart()
     }
     
@@ -59,7 +59,8 @@ class GameScene: SKScene {
     }
     
     func createRings() {
-        fiveRing = configureRingNode("Five", color: Colors.darkBlue, offset: 0, category: PhysicsType.fiveRing, dynamic: false, label: false)
+//        target = configureRingNode("Target", color: UIColor.clearColor(), offset: 0, category: PhysicsType.target, dynamic: false, label: false)
+        fiveRing = configureRingNode("Five", color: Colors.darkBlue, offset: 0, category: PhysicsType.target, dynamic: false, label: false)
         sixRing = configureRingNode("Six", color: Colors.blue, offset: 25, category: PhysicsType.sixRing, dynamic: true, label: false)
         sevenRing = configureRingNode("Seven", color: Colors.darkRed, offset: 50, category: PhysicsType.sevenRing, dynamic: true, label: false)
         eightRing = configureRingNode("Eight", color: Colors.red, offset: 75, category: PhysicsType.eightRing, dynamic: true, label: false)
@@ -73,7 +74,7 @@ class GameScene: SKScene {
         labelNode.horizontalAlignmentMode = .Center
         labelNode.fontSize = UIFont.systemFontSize() * 1.5
         labelNode.position = CGPointMake(size.width / 2, size.height / 2)
-        xRing.addChild(labelNode)
+//        xRing.addChild(labelNode)
     }
     
     func configureRingNode(name: String, color: UIColor, offset: CGFloat, category: UInt32, dynamic: Bool, label: Bool) -> SKShapeNode {

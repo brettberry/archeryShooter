@@ -24,6 +24,7 @@ class GameViewController: UIViewController {
         skView?.presentScene(gameScene)
         gameScene.delegate = self
         configurePanGesture()
+        skView?.showsPhysics = true 
     }
 
     override func prefersStatusBarHidden() -> Bool {
@@ -64,9 +65,9 @@ class GameViewController: UIViewController {
                 } else if self.currrentArrowIndex == 40 {
                     self.completeLevel(4)
                 }
-                
                 self.gameScene.createArrowWithIndex(self.currrentArrowIndex)
             }
+            
             let reload = SKAction.sequence([respawnDelay, respawn])
             arrow?.runAction(reload)
         }
@@ -122,6 +123,9 @@ class GameViewController: UIViewController {
             skView?.presentScene(gameOver, transition: transition)
         } else if level == 3 {
             let gameOver = LevelThreeOverScene(size: view.frame.size, score: gameScene.score, xCount: gameScene.xCount, gameViewController: self)
+            skView?.presentScene(gameOver, transition: transition)
+        } else if level == 4 {
+            let gameOver = LevelFourOverScene(size: view.frame.size, score: gameScene.score, xCount: gameScene.xCount, gameViewController: self)
             skView?.presentScene(gameOver, transition: transition)
         }
     }
