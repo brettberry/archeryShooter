@@ -15,7 +15,7 @@ class GameScene: SKScene {
     var scoreLabel = SKLabelNode()
     var xCountLabel = SKLabelNode()
     
-//    var target: SKShapeNode!
+    var target: SKShapeNode!
     var fiveRing: SKShapeNode!
     var sixRing: SKShapeNode!
     var sevenRing: SKShapeNode!
@@ -47,7 +47,6 @@ class GameScene: SKScene {
         
         let transition = SKTransition.fadeWithColor(UIColor.darkGrayColor(), duration: 1.0)
         view?.presentScene(gameScene, transition: transition)
-        
         createRings()
         addTargetNodes()
         createScoreLabel(score, withXCount: xCount)
@@ -59,8 +58,8 @@ class GameScene: SKScene {
     }
     
     func createRings() {
-//        target = configureRingNode("Target", color: UIColor.clearColor(), offset: 0, category: PhysicsType.target, dynamic: false, label: false)
-        fiveRing = configureRingNode("Five", color: Colors.darkBlue, offset: 0, category: PhysicsType.target, dynamic: false, label: false)
+        target = configureRingNode("Target", color: UIColor.clearColor(), offset: -1, category: PhysicsType.target, dynamic: false, label: false)
+        fiveRing = configureRingNode("Five", color: Colors.darkBlue, offset: 1, category: PhysicsType.fiveRing, dynamic: true, label: false)
         sixRing = configureRingNode("Six", color: Colors.blue, offset: 25, category: PhysicsType.sixRing, dynamic: true, label: false)
         sevenRing = configureRingNode("Seven", color: Colors.darkRed, offset: 50, category: PhysicsType.sevenRing, dynamic: true, label: false)
         eightRing = configureRingNode("Eight", color: Colors.red, offset: 75, category: PhysicsType.eightRing, dynamic: true, label: false)
@@ -100,6 +99,7 @@ class GameScene: SKScene {
     }
     
     private func addTargetNodes() {
+        addChild(target)
         addChild(fiveRing)
         addChild(sixRing)
         addChild(sevenRing)
@@ -156,7 +156,7 @@ class GameScene: SKScene {
         arrowhead.name = "arrowhead\(index)"
         addChild(arrowhead)
         
-        let arrowheadCenter = CGPointMake(arrowPoint.x + arrowheadSize.width / 2, arrowPoint.y + arrowSize.height + arrowheadSize.height / 2)
+        let arrowheadCenter = CGPointMake(arrowPoint.x + arrowheadSize.width / 2, arrowheadPoint.y)
         let arrowheadBody = SKPhysicsBody(circleOfRadius: arrowSize.width / 2, center: arrowheadCenter)
         arrowheadBody.affectedByGravity = false
         arrowheadBody.categoryBitMask = PhysicsType.arrow
