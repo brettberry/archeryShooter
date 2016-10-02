@@ -66,14 +66,6 @@ class GameScene: SKScene {
         nineRing = configureRingNode("Nine", color: Colors.darkYellow, offset: 100, category: PhysicsType.nineRing, dynamic: true, label: false)
         tenRing = configureRingNode("Ten", color: Colors.yellow, offset: 125, category: PhysicsType.tenRing, dynamic: true, label: false)
         xRing = configureRingNode("X", color: Colors.yellow, offset: 140, category: PhysicsType.xRing, dynamic: true, label: true)
-
-        let labelNode = SKLabelNode(text: "X")
-        labelNode.fontColor = UIColor.grayColor()
-        labelNode.verticalAlignmentMode = .Center
-        labelNode.horizontalAlignmentMode = .Center
-        labelNode.fontSize = UIFont.systemFontSize() * 1.5
-        labelNode.position = CGPointMake(size.width / 2, size.height / 2)
-//        xRing.addChild(labelNode)
     }
     
     func configureRingNode(name: String, color: UIColor, offset: CGFloat, category: UInt32, dynamic: Bool, label: Bool) -> SKShapeNode {
@@ -95,6 +87,17 @@ class GameScene: SKScene {
         physicsBody.contactTestBitMask = PhysicsType.arrow
         physicsBody.dynamic = dynamic
         node.physicsBody = physicsBody
+        
+        if label == true {
+            let labelNode = SKLabelNode(text: name)
+            labelNode.fontColor = UIColor.grayColor()
+            labelNode.verticalAlignmentMode = .Center
+            labelNode.horizontalAlignmentMode = .Center
+            labelNode.fontSize = UIFont.systemFontSize() * 1.5
+            labelNode.position = CGPointMake(size.width / 2, point.y + nodeSize.height / 2 )
+            node.addChild(labelNode)
+        }
+        
         return node
     }
     
@@ -196,6 +199,7 @@ class GameScene: SKScene {
         let moveLeft = SKAction.moveToX(-100, duration: duration)
         let moveSequence = SKAction.sequence([moveRight, moveLeft])
         let loopAction = SKAction.repeatActionForever(moveSequence)
+        target.runAction(loopAction)
         fiveRing.runAction(loopAction)
         sixRing.runAction(loopAction)
         sevenRing.runAction(loopAction)
@@ -210,6 +214,7 @@ class GameScene: SKScene {
         let moveDown = SKAction.moveToY(-100, duration: duration)
         let sequence = SKAction.sequence([moveUp, moveDown])
         let loopAction = SKAction.repeatActionForever(sequence)
+        target.runAction(loopAction)
         fiveRing.runAction(loopAction)
         sixRing.runAction(loopAction)
         sevenRing.runAction(loopAction)
@@ -228,6 +233,7 @@ class GameScene: SKScene {
         let moveCenterY = SKAction.moveToY(0, duration: duration / 2)
         let sequence = SKAction.sequence([moveRight, moveLeft, moveCenterX, moveUp, moveDown, moveCenterY])
         let loopAction = SKAction.repeatActionForever(sequence)
+        target.runAction(loopAction)
         fiveRing.runAction(loopAction)
         sixRing.runAction(loopAction)
         sevenRing.runAction(loopAction)
