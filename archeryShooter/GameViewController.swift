@@ -17,7 +17,6 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         let skView = view as? SKView
         gameScene = GameScene(size: view.bounds.size, gameDelegate: self)
         gameScene.setupGameScene()
@@ -53,7 +52,6 @@ class GameViewController: UIViewController {
             let respawnDelay = SKAction.waitForDuration(1.0)
             let respawn = SKAction.runBlock() {
                 let hits = self.gameScene.arrowhead.physicsBody!.allContactedBodies()
-                print(hits)
                 self.scoreArrow(hits)
                 self.currrentArrowIndex += 1
                 if self.currrentArrowIndex == 10 {
@@ -139,8 +137,8 @@ extension GameViewController: SKSceneDelegate {
         let lowestPoint = ((gameScene.size.height - gameScene.targetSize.height) / 2) + (gameScene.size.height / 5) - 250
         
         if arrowNode?.position.y > lowestPoint {
-            gameScene.joinToTarget((arrowNode?.physicsBody)!, physicsBodyB: (gameScene.target?.physicsBody)!)
-            gameScene.joinToTarget((arrowHeadNode?.physicsBody)!, physicsBodyB: (gameScene.target?.physicsBody)!)
+            gameScene.joinToTarget(arrowNode!.physicsBody!, physicsBodyB: gameScene.target!.physicsBody!)
+            gameScene.joinToTarget(arrowHeadNode!.physicsBody!, physicsBodyB: gameScene.target!.physicsBody!)
             let delay = SKAction.waitForDuration(0.5)
             let fade = SKAction.fadeOutWithDuration(0.1)
             let arrowExit = SKAction.sequence([delay, fade])

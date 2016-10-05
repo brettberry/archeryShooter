@@ -97,7 +97,6 @@ class GameScene: SKScene {
             labelNode.position = CGPointMake(size.width / 2, point.y + nodeSize.height / 2 )
             node.addChild(labelNode)
         }
-        
         return node
     }
     
@@ -197,50 +196,16 @@ class GameScene: SKScene {
     func moveTargetWithDuration(duration: Double) {
         let moveRight = SKAction.moveToX(100, duration: duration)
         let moveLeft = SKAction.moveToX(-100, duration: duration)
-        let moveSequence = SKAction.sequence([moveRight, moveLeft])
-        let loopAction = SKAction.repeatActionForever(moveSequence)
-        target.runAction(loopAction)
-        fiveRing.runAction(loopAction)
-        sixRing.runAction(loopAction)
-        sevenRing.runAction(loopAction)
-        eightRing.runAction(loopAction)
-        nineRing.runAction(loopAction)
-        tenRing.runAction(loopAction)
-        xRing.runAction(loopAction)
-    }
-    
-    func moveTargetVerticalWithDuration(duration: Double) {
-        let moveUp = SKAction.moveToY(100, duration: duration)
-        let moveDown = SKAction.moveToY(-100, duration: duration)
-        let sequence = SKAction.sequence([moveUp, moveDown])
-        let loopAction = SKAction.repeatActionForever(sequence)
-        target.runAction(loopAction)
-        fiveRing.runAction(loopAction)
-        sixRing.runAction(loopAction)
-        sevenRing.runAction(loopAction)
-        eightRing.runAction(loopAction)
-        nineRing.runAction(loopAction)
-        tenRing.runAction(loopAction)
-        xRing.runAction(loopAction)
-    }
-    
-    func moveCrissCrossWithDuration(duration: Double) {
-        let moveRight = SKAction.moveToX(100, duration: duration)
-        let moveLeft = SKAction.moveToX(-100, duration: duration)
-        let moveUp = SKAction.moveToY(100, duration: duration)
-        let moveDown = SKAction.moveToY(-100, duration: duration)
-        let moveCenterX = SKAction.moveToX(0, duration: duration / 2)
-        let moveCenterY = SKAction.moveToY(0, duration: duration / 2)
-        let sequence = SKAction.sequence([moveRight, moveLeft, moveCenterX, moveUp, moveDown, moveCenterY])
-        let loopAction = SKAction.repeatActionForever(sequence)
-        target.runAction(loopAction)
-        fiveRing.runAction(loopAction)
-        sixRing.runAction(loopAction)
-        sevenRing.runAction(loopAction)
-        eightRing.runAction(loopAction)
-        nineRing.runAction(loopAction)
-        tenRing.runAction(loopAction)
-        xRing.runAction(loopAction)
+        let sequence = SKAction.sequence([moveRight, moveLeft])
+        let loop = SKAction.repeatActionForever(sequence)
+        target.runAction(loop)
+        fiveRing.runAction(loop)
+        sixRing.runAction(loop)
+        sevenRing.runAction(loop)
+        eightRing.runAction(loop)
+        nineRing.runAction(loop)
+        tenRing.runAction(loop)
+        xRing.runAction(loop)
     }
 }
 
