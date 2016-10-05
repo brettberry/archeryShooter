@@ -62,10 +62,10 @@ class GameViewController: UIViewController {
                     self.completeLevel(3)
                 } else if self.currrentArrowIndex == 40 {
                     self.completeLevel(4)
+                    self.currrentArrowIndex = 0
                 }
                 self.gameScene.createArrowWithIndex(self.currrentArrowIndex)
             }
-            
             let reload = SKAction.sequence([respawnDelay, respawn])
             arrow?.runAction(reload)
         }
@@ -148,7 +148,6 @@ extension GameViewController: SKSceneDelegate {
 }
 
 extension GameViewController: GameDelegate {
-    
     func gameShouldStart() {
         gameScene.score = 0
         gameScene.xCount = 0
